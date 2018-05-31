@@ -26,7 +26,7 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-                        <dependency>
+        <dependency>
             <groupId>com.softbox</groupId>
             <artifactId>GrupoSA-ejb</artifactId>
             <version>1.0-SNAPSHOT</version>

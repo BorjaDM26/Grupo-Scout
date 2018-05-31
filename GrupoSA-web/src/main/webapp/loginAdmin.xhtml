@@ -31,7 +31,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><i class="fas fa-user"></i></div>
                         </div>
-                        <h:inputText value="#{loginAdmin.correo}" id="correo_usuario" class="form-control"></h:inputText>
+                        <h:inputText value="#{loginAdmin.usuario.email}" id="correo_usuario" class="form-control"></h:inputText>
                     </div>
                 </div>
                 <div class="form-group col-md-8 offset-md-2">
@@ -41,7 +41,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><i class="fas fa-key"></i></div>
                         </div>
-                        <h:inputSecret value="#{loginAdmin.password}" id="pass_usuario" class="form-control"></h:inputSecret>
+                        <h:inputSecret value="#{loginAdmin.usuario.pass}" id="pass_usuario" class="form-control"></h:inputSecret>
                     </div>
                 </div>
                 <h:messages></h:messages>

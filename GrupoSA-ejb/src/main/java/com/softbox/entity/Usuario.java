@@ -7,7 +7,12 @@ package com.softbox.entity;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,6 +25,8 @@ import javax.persistence.InheritanceType;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorColumn(name="DTYPE",discriminatorType = DiscriminatorType.CHAR)
+@DiscriminatorValue("U")
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -31,8 +38,8 @@ public class Usuario implements Serializable {
     private String pass;
     @Column(name = "email", nullable = false, length=50)
     private String email;
-    @Column(name = "perfil", nullable = false, length=30)
-    private String perfil;
+    @Enumerated(EnumType.STRING)
+    private Rol_Perfil perfil;
 
     public String getPass() {
         return pass;
@@ -59,14 +66,15 @@ public class Usuario implements Serializable {
     public void setId_Usuario(Long id) {
         this.id_Usuario = id;
     }
-    
-    public String getPerfil() {
+
+    public Rol_Perfil getPerfil() {
         return perfil;
     }
 
-    public void setPerfil(String perfil) {
+    public void setPerfil(Rol_Perfil perfil) {
         this.perfil = perfil;
     }
+    
 
     @Override
     public int hashCode() {

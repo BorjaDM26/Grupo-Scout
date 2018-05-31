@@ -23,7 +23,7 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fas fa-user"></i></div>
                                         </div>
-                                        <h:inputText value="#{login.correo}" id="correo_usuario" class="form-control"></h:inputText>
+                                        <h:inputText value="#{login.usuario.email}" id="correo_usuario" class="form-control"></h:inputText>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-8 offset-md-2">
@@ -33,7 +33,7 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fas fa-key"></i></div>
                                         </div>
-                                        <h:inputSecret value="#{login.password}" id="pass_usuario" class="form-control"></h:inputSecret>
+                                        <h:inputSecret value="#{login.usuario.pass}" id="pass_usuario" class="form-control"></h:inputSecret>
                                     </div>
                                 </div>
                                 <!--<div class=" row justify-content-md-center" style="margin-bottom: 20px;">

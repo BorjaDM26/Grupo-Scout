@@ -5,6 +5,7 @@
  */
 package com.softbox.backingBeans;
 
+import com.softbox.entity.Rol_Perfil;
 import com.softbox.entity.Socio;
 import java.io.Serializable;
 import java.sql.Date;
@@ -44,7 +45,7 @@ public class sociosBB implements Serializable{
         socio1.setDireccion("Calle de Atrás, N1, 1ºB. Madrid, 10101");        
         socio1.setTelefono(952121212);
         socio1.setTelefono_movil(650121212);
-        socio1.setPerfil("Scouter");
+        socio1.setPerfil(Rol_Perfil.SCOUT);
         socio1.setGrupo("Clan");
         socio1.setCargo("Instructor");
         socio1.setAmbito("Federal");
@@ -63,7 +64,7 @@ public class sociosBB implements Serializable{
         socio2.setDireccion("Calle de Atrás, N1, 3ºA. Madrid, 10101");        
         socio2.setTelefono(952345345);
         socio2.setTelefono_movil(650345345);
-        socio2.setPerfil("Educando");
+        socio2.setPerfil(Rol_Perfil.EDUCANDO);
         socio2.setGrupo("Clan");
         socio2.setAmbito("Grupo");
         socio2.setFecha_firma(Date.valueOf(LocalDate.now()));
