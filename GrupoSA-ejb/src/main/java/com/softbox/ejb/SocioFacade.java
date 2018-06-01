@@ -65,8 +65,7 @@ public class SocioFacade extends AbstractFacade<Socio> implements SocioFacadeLoc
         q.setParameter("femail", u.getEmail());
         List<Socio> lista = q.getResultList();
         Socio s = null;
-        
-        s = lista.get(0);
+        if(lista.size()>0) s = lista.get(0);
         
         return s;
         
