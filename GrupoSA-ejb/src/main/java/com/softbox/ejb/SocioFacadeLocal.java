@@ -23,7 +23,7 @@ public interface SocioFacadeLocal {
 
     void remove(Socio socio);
     
-    void comprobarLogin(Socio socio) throws ScoutException;
+    Socio comprobarLogin(Socio socio) throws ScoutException;
 
     Socio find(Object id);
 

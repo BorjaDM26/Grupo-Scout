@@ -37,7 +37,7 @@ public class SocioFacade extends AbstractFacade<Socio> implements SocioFacadeLoc
     }
 
     @Override
-    public void comprobarLogin(Socio u) throws ScoutException {
+    public Socio comprobarLogin(Socio u) throws ScoutException {
         Socio user = findByEmail(u);
 
         if (user != null) {
@@ -47,26 +47,19 @@ public class SocioFacade extends AbstractFacade<Socio> implements SocioFacadeLoc
         } else {
             throw new UsuarioNoExiste();
         }
+        
+        return user;
     }
 
     private Socio findByEmail(Socio u) {
-        /*Query qu = em.createNativeQuery("SELECT S.* FROM SOCIO S LEFT JOIN USUARIO U ON U.ID_USUARIO=S.ID_USUARIO WHERE U.EMAIL='" + u.getEmail() + "'");
-        List<Object[]> lista = qu.getResultList();
-        if (lista.size() <= 0) {
-            return null;
-        } else {
-            Long idSocio = (Long) lista.get(0)[0];
-            Socio s = new Socio();
-            Usuario user = em.find(Usuario.class, 1L);
 
-            return s;
-        }*/
         TypedQuery<Socio> q = em.createQuery("SELECT s FROM Socio s where s.email = :femail", Socio.class);
         q.setParameter("femail", u.getEmail());
         List<Socio> lista = q.getResultList();
         Socio s = null;
         
-        s = lista.get(0);
+        if(lista.size() == 1)
+            s = lista.get(0);
         
         return s;
         

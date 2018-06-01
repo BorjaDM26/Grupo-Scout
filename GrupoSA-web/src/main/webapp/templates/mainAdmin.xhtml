@@ -23,8 +23,7 @@
                         <h4 class="titulo3">Grupo Scout 39</h4>
                         <h4 class="titulo3">Santo Ángel</h4>
                         <h5 class="titulo4">Administración</h5>
-
-                        <c:if test="#{controlAutorizacion.socio.perfil == Rol_perfil.ROOT}">
+                        <c:if test="#{controlAutorizacion.socio.perfil == 'ROOT'}">
                             <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fas fa-list-ul"></i> <span class="d-none d-md-inline">Socios </span></a>
                             <div class="collapse" id="menu1" data-parent="#sidebar">
                                 <a href="sociosLista.xhtml" class="list-group-item" data-parent="#menu1">Lista de Socios</a>
@@ -85,7 +84,7 @@
                             </div>
                             
                         </c:if>
-                        <c:if test="#{controlAutorizacion.socio.perfil == Rol_perfil.SCOUT}">
+                        <c:if test="#{controlAutorizacion.socio.perfil == 'SCOUT'}">
                             <a href="#menu1" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fas fa-list-ul"></i> <span class="d-none d-md-inline">Socios </span></a>     
                             <div class="collapse" id="menu1" data-parent="#sidebar">
                                 <a href="sociosLista.xhtml" class="list-group-item" data-parent="#menu1">Lista de Socios</a>
