@@ -10,8 +10,6 @@ import com.softbox.entity.Socio;
 import com.softbox.exception.PasswordInvalido;
 import com.softbox.exception.ScoutException;
 import com.softbox.exception.UsuarioNoExiste;
-import java.util.ArrayList;
-import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -50,7 +48,7 @@ public class LoginAdmin {
         String cadena = "";
         
         try{
-            user.comprobarLogin(usuario);
+            usuario = user.comprobarLogin(usuario);
             ctrl.setUsuario(usuario);
             cadena = "indexAdmin.xhtml";
         }catch(UsuarioNoExiste e){

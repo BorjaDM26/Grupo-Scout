@@ -5,43 +5,59 @@
  */
 package com.softbox.backingBeans;
 
+import com.softbox.ejb.EventoFacadeLocal;
+import com.softbox.ejb.SeccionFacadeLocal;
+import com.softbox.entity.Evento;
 import com.softbox.entity.Seccion;
+import java.io.Serializable;
+import java.util.List;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 
 /**
  *
  * @author migue
  */
 @Named(value = "seccionesBB")
-@RequestScoped
-public class seccionesBB {
-    private String seccion;
-    private Seccion sec;
+@SessionScoped
+public class seccionesBB implements Serializable{
+    @Inject
+    private SeccionFacadeLocal secEjb;
+    @Inject
+    private EventoFacadeLocal eventoEjb;
+    private Seccion seccion;
+    private List<Evento> lista;
     /**
      * Creates a new instance of seccionesBB
      */
     public seccionesBB() {
-        sec = new Seccion();
-        sec.setDescripcion("Esta es la sección de los castores, a la cual se pueden apuntar niños desde los X hasta los Y años.");
-        sec.setNombre("castores");
     }
 
-    public Seccion getSec() {
-        return sec;
+    public List<Evento> getLista() {
+        return lista;
     }
 
-    public void setSec(Seccion sec) {
-        this.sec = sec;
+    public void setLista(List<Evento> lista) {
+        this.lista = lista;
     }
     
-    public String cargarLista(String seccion){
-        this.seccion = seccion;
+    public String cargarLista(Long id_Seccion){
+        this.seccion = secEjb.find(id_Seccion);
+        this.lista = eventoEjb.findBySeccion(id_Seccion);
         return "eventos.xhtml";
     }
-    
-    public String getSeccion(){
+
+    public Seccion getSeccion() {
         return seccion;
     }
+
+    public void setSeccion(Seccion seccion) {
+        this.seccion = seccion;
+    }
+
+    
+    
+    
 }
