@@ -66,6 +66,7 @@ public class SocioFacade extends AbstractFacade<Socio> implements SocioFacadeLoc
         return s;
     }
     
+    @Override
     public Long getNextId() {
         TypedQuery<BigDecimal> q = (TypedQuery<BigDecimal>) em.createNativeQuery("SELECT seq_count FROM SEQUENCE where seq_name = 'S_IDSOCIO'");
         Query q2 = em.createNativeQuery("UPDATE SEQUENCE SET SEQ_COUNT = SEQ_COUNT + 1 WHERE SEQ_NAME = 'S_IDSOCIO'");

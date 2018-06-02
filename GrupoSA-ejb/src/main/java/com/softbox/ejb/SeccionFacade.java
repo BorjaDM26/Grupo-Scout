@@ -9,6 +9,7 @@ import com.softbox.entity.Seccion;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -29,4 +30,9 @@ public class SeccionFacade extends AbstractFacade<Seccion> implements SeccionFac
         super(Seccion.class);
     }
     
+    public Seccion findByNombre(String nombre){
+        TypedQuery<Seccion> q = em.createQuery("SELECT S FROM Seccion S WHERE S.nombre = :fnombre", Seccion.class);
+        q.setParameter("fnombre", nombre);
+        return q.getResultList().get(0);
+    }
 }

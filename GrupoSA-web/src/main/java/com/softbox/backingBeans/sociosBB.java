@@ -5,6 +5,7 @@
  */
 package com.softbox.backingBeans;
 
+import com.softbox.ejb.SeccionFacadeLocal;
 import com.softbox.ejb.SocioFacadeLocal;
 import com.softbox.ejb.UsuarioFacadeLocal;
 import com.softbox.entity.Socio;
@@ -30,6 +31,8 @@ public class sociosBB implements Serializable{
     private SocioFacadeLocal sf;
     @Inject
     private UsuarioFacadeLocal uf;
+    @Inject
+    private SeccionFacadeLocal secf;
     
     private Socio socio = new Socio();
 
@@ -63,6 +66,7 @@ public class sociosBB implements Serializable{
         socio.setId_Usuario(uf.getNextId());
         socio.setPass("1234");
         socio.setFecha_ingreso(Date.valueOf(LocalDate.now()));
+        socio.setSeccion(secf.findByNombre(socio.getGrupo()));
         sf.create(socio);
         return "sociosLista.xhtml";
     }
@@ -74,6 +78,7 @@ public class sociosBB implements Serializable{
     }
     
     public String updateSocio(){
+        socio.setSeccion(secf.findByNombre(socio.getGrupo()));
         sf.edit(socio);
         return "sociosLista.xhtml";
     }

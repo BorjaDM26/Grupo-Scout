@@ -30,4 +30,6 @@ public interface SeccionFacadeLocal {
 
     int count();
     
+    Seccion findByNombre(String nombre);
+    
 }
