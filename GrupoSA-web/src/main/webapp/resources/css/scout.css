@@ -377,3 +377,15 @@ body {
     font-style: italic;
     padding-left: 20px;
 }
+.btn-apuntado{
+    margin: 0 auto;
+    display: block;
+    width: 50%;
+    height: 65px;
+    font-size: 1.8em;
+    background-color: orange;
+    font-weight: bold;
+    border: 2px black solid;
+    color:white;
+    cursor: default!important;
+}

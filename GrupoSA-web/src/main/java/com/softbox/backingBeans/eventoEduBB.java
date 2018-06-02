@@ -5,11 +5,16 @@
  */
 package com.softbox.backingBeans;
 
+import com.softbox.ejb.ComentarioFacadeLocal;
+import com.softbox.ejb.EventoFacadeLocal;
+import com.softbox.entity.Comentario;
 import com.softbox.entity.Evento;
 import java.io.Serializable;
-import java.sql.Date;
-import javax.inject.Named;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
+
+import javax.inject.Inject;
 
 /**
  *
@@ -18,20 +23,19 @@ import javax.enterprise.context.SessionScoped;
 @Named(value = "eventoEduBB")
 @SessionScoped
 public class eventoEduBB implements Serializable{
-    private Long idEvento;
+    @Inject
+    private EventoFacadeLocal eventoEjb;
+    @Inject
+    private ComentarioFacadeLocal comenEjb;
+    @Inject 
+    private ControlAutorizacion ctrl;
     private Evento evt;
+    private List<Comentario> listComen;
+    
     /**
      * Creates a new instance of eventoEduBB
      */
     public eventoEduBB() {
-    }
-
-    public Long getIdEvento() {
-        return idEvento;
-    }
-
-    public void setIdEvento(Long idEvento) {
-        this.idEvento = idEvento;
     }
 
     public Evento getEvt() {
@@ -41,16 +45,26 @@ public class eventoEduBB implements Serializable{
     public void setEvt(Evento evt) {
         this.evt = evt;
     }
-    
-    public String mostrarEvento(String numero){
-        idEvento = Long.parseLong(numero);
-        evt = new Evento();
-        evt.setId_evento(idEvento);
-        evt.setNombre("Pesca en el espigón de la calita");
-        evt.setDescripcion("¿En que consiste el evento? Una vez el jugador tiene un número de cajas (las que considere el jugador suficientes), pulsando en el banner se abrirá una pantalla de un puzzle. Se deben arrastrar las cajas a sus sitios y, una vez en sus casillas, se pueden abrir para obtener piezas del puzzle. Cada caja sólo da una pieza y la caja normal tiene varios tipos de piezas. ");
-        evt.setFecha(Date.valueOf("2018-02-13"));
-        evt.setPrecio(0f);
+    public String mostrarEvento(Long id){
+        evt = eventoEjb.find(id);
+        listComen = comenEjb.findByEvento(id);
         return "evento.xhtml";
     }
+
+    public List<Comentario> getListComen() {
+        return listComen;
+    }
+
+    public void setListComen(List<Comentario> listComen) {
+        this.listComen = listComen;
+    }
     
+    public String inscribirseEvento(Long id_Socio){
+        eventoEjb.inscribirSocio(id_Socio, evt.getId_evento());
+        return mostrarEvento(evt.getId_evento());
+    }
+    
+    public boolean socioInscrito(Long id_socio){
+        return eventoEjb.usuarioInscrito(id_socio, evt.getId_evento());
+    }
 }
