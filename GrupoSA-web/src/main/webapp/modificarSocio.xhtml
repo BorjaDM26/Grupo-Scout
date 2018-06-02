@@ -72,9 +72,9 @@
                     <div class="form-group col-md-4">
                         <h:outputLabel for="inputPerfil">Perfil *</h:outputLabel>
                         <h:selectOneMenu id="inputPerfil" value="#{sociosBB.socio.perfil}" a:required="true" class="form-control">
-                            <f:selectItem itemLabel="Administrador" itemValue="Administrador"/>
-                            <f:selectItem itemLabel="Scouter" itemValue="Scouter"/>
-                            <f:selectItem itemLabel="Educando" itemValue="Educando"/>
+                            <f:selectItem itemLabel="Administrador" itemValue="ROOT"/>
+                            <f:selectItem itemLabel="Scouter" itemValue="SCOUT"/>
+                            <f:selectItem itemLabel="Educando" itemValue="EDUCANDO"/>
                         </h:selectOneMenu>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                         <h:inputText a:type="date" value="#{sociosBB.socio.fecha_baja}" class="form-control" id="inputFechaBaja"><f:convertDateTime pattern="yyyy-MM-dd"/></h:inputText>
                     </div>
                 </div>
-                <h:commandButton action="sociosLista.xhtml" class="btn btn-primary" value="Modificar"/>
+                <h:commandButton action="#{sociosBB.updateSocio()}" class="btn btn-primary" value="Modificar"/>
                 &nbsp;&nbsp;
                 <h:button outcome="sociosLista.xhtml" class="btn btn-primary" value="Volver"/>
             </h:form>

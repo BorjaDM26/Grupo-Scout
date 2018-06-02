@@ -18,12 +18,14 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSeccion" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-child" style="margin-right: 10px"></i>Secciones <span class="sr-only">(current)</span></a>
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownSeccion">
+                            <h:form id="castores">
+                                <h:commandLink action ="#{seccionesBB.cargarLista(1)}" class="dropdown-item">Castores</h:commandLink>
+                            </h:form>
                             <h:form>
-                                <h:commandLink action ="#{seccionesBB.cargarLista('castores')}" class="dropdown-item">Castores</h:commandLink>
-                                <h:commandLink action ="#{seccionesBB.cargarLista('manada')}" class="dropdown-item">Manada</h:commandLink>
-                                <h:commandLink action ="#{seccionesBB.cargarLista('tropa')}" class="dropdown-item">Tropa</h:commandLink>
-                                <h:commandLink action ="#{seccionesBB.cargarLista('unidad')}" class="dropdown-item">Unidad</h:commandLink>
-                                <h:commandLink action ="#{seccionesBB.cargarLista('clan')}" class="dropdown-item">Clan</h:commandLink>
+                                <h:commandLink action ="#{seccionesBB.cargarLista(2)}" class="dropdown-item">Manada</h:commandLink>
+                                <h:commandLink action ="#{seccionesBB.cargarLista(3)}" class="dropdown-item">Tropa</h:commandLink>
+                                <h:commandLink action ="#{seccionesBB.cargarLista(4)}" class="dropdown-item">Unidad</h:commandLink>
+                                <h:commandLink action ="#{seccionesBB.cargarLista(5)}" class="dropdown-item">Clan</h:commandLink>
                             </h:form>
                         </div>
                     </li>

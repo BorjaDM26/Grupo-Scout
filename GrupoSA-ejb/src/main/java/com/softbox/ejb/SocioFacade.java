@@ -10,12 +10,14 @@ import com.softbox.entity.Usuario;
 import com.softbox.exception.PasswordInvalido;
 import com.softbox.exception.ScoutException;
 import com.softbox.exception.UsuarioNoExiste;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.xml.rpc.holders.BigDecimalHolder;
 
 /**
  *
@@ -62,7 +64,13 @@ public class SocioFacade extends AbstractFacade<Socio> implements SocioFacadeLoc
             s = lista.get(0);
         
         return s;
-        
-
     }
+    
+    public Long getNextId() {
+        TypedQuery<BigDecimal> q = (TypedQuery<BigDecimal>) em.createNativeQuery("SELECT seq_count FROM SEQUENCE where seq_name = 'S_IDSOCIO'");
+        Query q2 = em.createNativeQuery("UPDATE SEQUENCE SET SEQ_COUNT = SEQ_COUNT + 1 WHERE SEQ_NAME = 'S_IDSOCIO'");
+        q2.executeUpdate();
+        return q.getSingleResult().longValue();
+    }
+    
 }

@@ -33,4 +33,5 @@ public interface SocioFacadeLocal {
 
     int count();
     
+    Long getNextId();
 }
