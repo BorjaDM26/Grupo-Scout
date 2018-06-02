@@ -6,6 +6,7 @@
 package com.softbox.ejb;
 
 import com.softbox.entity.Evento;
+import com.softbox.entity.Seccion;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -37,5 +38,11 @@ public interface EventoFacadeLocal {
     void modificar(Evento evento);
 
     public void borrar(Evento evento);
+    
+    List<Evento> findBySeccion(Long id_Seccion);
+    
+    boolean usuarioInscrito(Long id_Socio, Long id_Evento);
+    
+    void inscribirSocio(Long id_Socio, Long id_Evento);
 
 }

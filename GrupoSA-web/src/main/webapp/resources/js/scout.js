@@ -9,17 +9,7 @@ function enlaceActivo() {
     cadena = url.substring(indice + 1, url.length - 6);
     $("#" + cadena).toggleClass("active");
 }
-function btnEditarUsuario() {
-    $("#editar_MisDatos").click(function (evt) {
-        evt.preventDefault();
-        $("#formMisDatos\\:nombreUsuario").removeAttr("disabled");
-        $("#formMisDatos\\:apellidosUsuario").removeAttr("disabled");
-        $("#formMisDatos\\:direccionUsuario").removeAttr("disabled");
-        $("#formMisDatos\\:telefonoUsuario").removeAttr("disabled");
-        $("#formMisDatos\\:movilUsuario").removeAttr("disabled");
-        $("#formMisDatos\\:sexoUsuario").removeAttr("disabled");
-    });
-}
+
 function lateralActivo() {
     url = $(location).attr('pathname');
     indice = url.lastIndexOf("/");
@@ -41,7 +31,6 @@ function editarComentarioEvt(){
 $(document).ready(function () {
     // Handler for .ready() called.
     enlaceActivo();
-    btnEditarUsuario();
     lateralActivo();
     editarComentarioEvt();
 

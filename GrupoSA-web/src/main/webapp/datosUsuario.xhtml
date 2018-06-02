@@ -21,29 +21,29 @@
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <h:outputLabel>Nombre</h:outputLabel>
-                                <h:inputText value="#{controlAutorizacion.socio.nombre}" class="form-control" id="nombreUsuario" disabled="true" a:placeholder="Tu nombre"></h:inputText>
+                                <h:inputText value="#{controlAutorizacion.socio.nombre}" class="form-control" id="nombreUsuario"  a:placeholder="Tu nombre"></h:inputText>
                             </div>
                             <div class="form-group col-md-4">
                                 <h:outputLabel>Apellidos</h:outputLabel>
-                                <h:inputText value="#{controlAutorizacion.socio.apellidos}" class="form-control" id="apellidosUsuario" disabled="true" a:placeholder="Tus apellidos"></h:inputText>
+                                <h:inputText value="#{controlAutorizacion.socio.apellidos}" class="form-control" id="apellidosUsuario" a:placeholder="Tus apellidos"></h:inputText>
                             </div>
                             <div class="form-group col-md-4">
                                 <h:outputLabel>Dirección</h:outputLabel>
-                                <h:inputText value="#{controlAutorizacion.socio.direccion}" class="form-control" id="direccionUsuario" disabled="true" a:placeholder="Tu dirección"></h:inputText>
+                                <h:inputText value="#{controlAutorizacion.socio.direccion}" class="form-control" id="direccionUsuario" a:placeholder="Tu dirección"></h:inputText>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <h:outputLabel>Teléfono</h:outputLabel>
-                                <h:inputText value="#{controlAutorizacion.socio.telefono}" class="form-control" id="telefonoUsuario" disabled="true" a:placeholder="Teléfono Casa"></h:inputText>
+                                <h:inputText value="#{controlAutorizacion.socio.telefono}" class="form-control" id="telefonoUsuario" a:placeholder="Teléfono Casa"></h:inputText>
                             </div>
                             <div class="form-group col-md-3">
                                 <h:outputLabel>Teléfono móvil</h:outputLabel>
-                                <h:inputText value="#{controlAutorizacion.socio.telefono_movil}" class="form-control" id="movilUsuario" disabled="true" a:placeholder="Teléfono Móvil"></h:inputText>
+                                <h:inputText value="#{controlAutorizacion.socio.telefono_movil}" class="form-control" id="movilUsuario"  a:placeholder="Teléfono Móvil"></h:inputText>
                             </div>
                             <div class="form-group col-md-3">
                                 <h:outputLabel>Sexo</h:outputLabel>
-                                <h:selectOneMenu id="sexoUsuario" class="form-control" value="#{controlAutorizacion.socio.sexo}" a:disabled="true">
+                                <h:selectOneMenu id="sexoUsuario" class="form-control" value="#{controlAutorizacion.socio.sexo}">
                                     <f:selectItem itemValue="Hombre" itemLabel="Hombre"></f:selectItem>
                                     <f:selectItem itemValue="Mujer" itemLabel="Mujer"></f:selectItem>
                                 </h:selectOneMenu>
@@ -52,13 +52,13 @@
                                 <h:outputLabel>Fecha de Nacimiento</h:outputLabel>
                                 <div class="form-row">
                                     <div class="col-md-4">
-                                        <h:inputText value="#{controlAutorizacion.socio.fecha_nacimiento.date}" class="form-control" id="dia" disabled="true" ></h:inputText>
+                                        <h:inputText value="#{controlAutorizacion.socio.fecha_nacimiento.date}" class="form-control" id="dia" ></h:inputText>
                                     </div>
                                     <div class="col-md-4">
-                                        <h:inputText value="#{controlAutorizacion.socio.fecha_nacimiento.month}" class="form-control" id="mes" disabled="true" ></h:inputText>
+                                        <h:inputText value="#{controlAutorizacion.socio.fecha_nacimiento.month}" class="form-control" id="mes" ></h:inputText>
                                     </div>
                                     <div class="col-md-4">
-                                        <h:inputText value="#{controlAutorizacion.socio.fecha_nacimiento.year}" class="form-control" id="year" disabled="true" ></h:inputText>
+                                        <h:inputText value="#{controlAutorizacion.socio.fecha_nacimiento.year}" class="form-control" id="year" ></h:inputText>
                                     </div>
 
                                 </div>
@@ -66,8 +66,7 @@
 
                             </div>
                         </div>
-                        <h:commandLink class="btn btn-success" id="guardar_MisDatos" style="margin-right: 15px;" action="#"><i class="fas fa-edit"></i> Guardar</h:commandLink>
-                        <a class="btn btn-info" id="editar_MisDatos"  style="color:white"><i class="fas fa-edit"></i> Editar</a>
+                        <h:commandLink class="btn btn-success" id="guardar_MisDatos" style="margin-right: 15px;" action="#{controlAutorizacion.actualizarDatos()}"><i class="fas fa-edit"></i> Guardar</h:commandLink>
 
                     </h:form>
                 </div>

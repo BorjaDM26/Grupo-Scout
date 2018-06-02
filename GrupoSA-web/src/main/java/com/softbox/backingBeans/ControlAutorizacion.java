@@ -5,14 +5,13 @@
  */
 package com.softbox.backingBeans;
 
+import com.softbox.ejb.SocioFacadeLocal;
 import com.softbox.entity.Socio;
-import com.softbox.entity.Usuario;
 import java.io.Serializable;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 
 /**
  *
@@ -22,8 +21,19 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class ControlAutorizacion implements Serializable {
 
+    @Inject 
+    private SocioFacadeLocal socioEjb;
     private Socio socio;
+    private String nombre;
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
     public void setUsuario(Socio socio) {
         this.socio = socio;
     }
@@ -57,5 +67,9 @@ public class ControlAutorizacion implements Serializable {
      */
     public ControlAutorizacion() {
     }
-
+    
+    public String actualizarDatos(){
+        socioEjb.edit(socio);
+        return "datosUsuario.xhtml";
+    }
 }

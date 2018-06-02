@@ -28,6 +28,8 @@ public interface ComentarioFacadeLocal {
 
     List<Comentario> findRange(int[] range);
 
+    List<Comentario> findByEvento(Long id_Evento);
+    
     int count();
     
 }
