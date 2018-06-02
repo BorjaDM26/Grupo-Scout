@@ -7,6 +7,7 @@ package com.softbox.entity;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,7 +37,7 @@ public class Cuota implements Serializable {
     @Column(nullable=false,length=200)
     private String descripcion;
     
-    @OneToMany(mappedBy="cuota")
+    @OneToMany(mappedBy="cuota", cascade = {CascadeType.REMOVE})
     private List<Pago_Cuota> pago_cuotas;
 
     public Long getId_Cuota() {

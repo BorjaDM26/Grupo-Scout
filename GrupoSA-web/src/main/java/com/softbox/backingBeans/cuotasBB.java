@@ -5,12 +5,15 @@
  */
 package com.softbox.backingBeans;
 
+import com.softbox.ejb.CuotaFacadeLocal;
 import com.softbox.entity.Cuota;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
+
 
 /**
  *
@@ -19,34 +22,23 @@ import javax.inject.Named;
 
 @Named(value = "cuotasBB")
 @SessionScoped
-public class cuotasBB implements Serializable{
-    private Long sigId = Long.parseLong("1");    
-    private List<Cuota> cuotas;
+public class cuotasBB implements Serializable{   
+ //   private List<Cuota> cuotas;
     private Cuota cuota = new Cuota();
     
+    @Inject
+    private CuotaFacadeLocal cuotaEJB;
+    
     public cuotasBB(){
-        cuotas = new ArrayList<Cuota>();
-        Cuota cuota1 = new Cuota();
-        cuota1.setId_Cuota(sigId++);
-        cuota1.setDescripcion("Cuota anual para Educandos");
-        cuota1.setImporte(39);
-        cuota1.setNombre("Educando");
-        cuotas.add(cuota1);
-        Cuota cuota2 = new Cuota();
-        cuota2.setId_Cuota(sigId++);
-        cuota2.setDescripcion("Cuota anual para Scouters");
-        cuota2.setImporte(25);
-        cuota2.setNombre("Scouter");
-        cuotas.add(cuota2);
     }
     
     public List<Cuota> getCuotas() {
-        return cuotas;
+        return cuotaEJB.findAll();
     }
 
-    public void setCuotas(List<Cuota> cuotas) {
-        this.cuotas = cuotas;
-    }
+ //   public void setCuotas(List<Cuota> cuotas) {
+ //       this.cuotas = cuotas;
+ //   }
 
     public Cuota getCuota() {
         return cuota;
@@ -64,26 +56,22 @@ public class cuotasBB implements Serializable{
     
     //Crea el socio con los datos proporcionado en la vista de creación
     public String createCuotas(){
-        cuota.setId_Cuota(sigId++);     
-        cuotas.add(cuota);
+        cuota.setId_Cuota(cuotaEJB.getNextId());
+        cuotaEJB.create(cuota);
         return "cuotasLista.xhtml";
     }
-    
-    public String updateCuota(Cuota cuot){
+    public String modCuota(Cuota cuot){
         cuota = cuot;
         return "cuotasModificar.xhtml";
     }
     
-    public String deleteCuota(Cuota cuot){
-        boolean borrado = false;
-        int i = 0;
-        while(!borrado && i < cuotas.size()){
-            if(cuotas.get(i).getId_Cuota().compareTo(cuot.getId_Cuota())==0){
-                cuotas.remove(i);
-                borrado=true;
-            }
-            i++;
-        }
+    public String updateCuota(){
+        cuotaEJB.edit(cuota);
+        return "cuotasLista.xhtml";
+    }
+    
+    public String deleteCuota(Cuota cuot){    
+        cuotaEJB.remove(cuot);
         return "cuotasLista.xhtml";
     }
 }

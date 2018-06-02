@@ -5,6 +5,7 @@
  */
 package com.softbox.backingBeans;
 
+import com.softbox.ejb.EventoFacadeLocal;
 import com.softbox.entity.Evento;
 import com.softbox.entity.Seccion;
 import com.softbox.entity.Socio;
@@ -31,6 +32,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.file.Paths;
+import javax.inject.Inject;
 
 /**
  *
@@ -43,6 +45,9 @@ public class eventosBB implements Serializable{
     private Long sigIdEvento = Long.parseLong("1");   
     private List<Evento> eventos;
     private Evento evento = new Evento();
+    
+    @Inject
+    private EventoFacadeLocal eventoEJB;
 
     /**
      * Creates a new instance of sociosBB
@@ -173,12 +178,12 @@ public class eventosBB implements Serializable{
         String path2=demo.getClass().getResource("").getPath();
         String fullPath = URLDecoder.decode(path2, "UTF-8");
         
-        String pathArr[] = fullPath.split("/WEB-INF/classes/backingBeans/");
+        String pathArr[] = fullPath.split("/GrupoSA-ear/target/");
         
         fullPath = pathArr[0];
         
         String reponsePath = "";
-        reponsePath = new File(fullPath).getPath() + File.separatorChar + "resources"+File.separatorChar+nombreArchivo;
+        reponsePath = new File(fullPath).getPath() +File.separatorChar+"main"+File.separatorChar+"webapp"+File.separatorChar+ "resources"+File.separatorChar+nombreArchivo;
         return reponsePath;
     }
     

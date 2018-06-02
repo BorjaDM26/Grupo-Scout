@@ -29,12 +29,8 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <h:outputLabel for="inputNombre">Socio: Nombre *</h:outputLabel>
-                            <h:inputText a:type="text" value="#{transaccionesBB.transaccion.socio.nombre}" class="form-control" id="inputNombre" a:required="true" a:placeholder="Nombre"/>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <h:outputLabel for="inputApellidos">Socio: Apellidos *</h:outputLabel>
-                            <h:inputText a:type="text" value="#{transaccionesBB.transaccion.socio.apellidos}" class="form-control" id="inputApellidos" a:required="true" a:placeholder="Apellidos"/>
+                            <h:outputLabel for="inputIdentificador">Socio: Identificador *</h:outputLabel>
+                            <h:inputText a:type="number" value="#{transaccionesBB.transaccion.socio.id_Usuario}" class="form-control" id="inputIdentificador" a:required="true" a:placeholder="Identificador"/>
                         </div>
                         <div class="form-group col-md-4">
                             <h:outputLabel for="inputConcepto">Concepto *</h:outputLabel>
@@ -47,7 +43,7 @@
                             <h:inputText a:type="date" value="#{transaccionesBB.transaccion.fecha}" class="form-control" id="inputFecha" a:required="true" a:placeholder="DD/MM/AAAA"><f:convertDateTime pattern="yyyy-MM-dd"/></h:inputText>
                         </div>
                     </div>
-                    <h:commandButton action="listarTransacciones.xhtml" class="btn btn-primary" value="Modificar"/>
+                    <h:commandButton action="#{transaccionesBB.updateTransaccion()}" class="btn btn-primary" value="Modificar"/>
                     &nbsp;&nbsp;
                     <h:button outcome="listarTransacciones.xhtml" class="btn btn-primary" value="Volver"/>
                 </h:form>

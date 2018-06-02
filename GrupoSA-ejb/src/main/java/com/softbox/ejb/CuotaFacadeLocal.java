@@ -30,4 +30,6 @@ public interface CuotaFacadeLocal {
 
     int count();
     
+    Long getNextId();
+    
 }

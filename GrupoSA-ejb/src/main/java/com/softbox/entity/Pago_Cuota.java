@@ -31,7 +31,6 @@ public class Pago_Cuota implements Serializable {
     @Column(length=30)
     private Long id_Pago;
     
-    
     @Column(nullable=false,length=100)
     private Float importe;
     
