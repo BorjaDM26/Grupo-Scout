@@ -26,8 +26,13 @@ public interface Entrada_CalendarioFacadeLocal {
 
     List<Entrada_Calendario> findAll();
 
+    List<Entrada_Calendario> findByIdSocio(Long idSocio);
+
     List<Entrada_Calendario> findRange(int[] range);
 
     int count();
+    
+        Long getNextId();
+
     
 }

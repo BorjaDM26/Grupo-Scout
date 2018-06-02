@@ -30,7 +30,7 @@
                 </div>
             </h:form>
             
-            <h:dataTable id="listaCalendario" value="#{CalendarioBB.getCalendarioFiltered()}"  var="entCal" class="table">
+            <h:dataTable id="listaCalendario" value="#{CalendarioBB.getCalendario()}"  var="entCal" class="table">
                 <h:column >
                     <f:facet name="header">
                         <h:outputText value="Identificador Entrada"/>
@@ -42,13 +42,7 @@
                     <f:facet name="header">
                         <h:outputText value="Identificador Socio"/>
                     </f:facet>
-                    <c:if test="#{CalendarioBB.buscador == '0'}">
-                        <h:outputText value="#{entCal.socio.id_Socio}" />
-                    </c:if>
-                    <c:if test="#{CalendarioBB.buscador != '0'}">
-                        <h:outputText value="#{entCal.socio.id_Socio}"/>
-                    </c:if>
-                    
+                    <h:outputText value="#{entCal.socio.id_Socio}" />
                 </h:column>
                 
                 <h:column>

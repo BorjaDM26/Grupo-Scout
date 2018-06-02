@@ -6,8 +6,9 @@
 package com.softbox.backingBeans;
 
 import com.softbox.ejb.SocioFacadeLocal;
-import com.softbox.entity.Rol_Perfil;
+import com.softbox.ejb.UsuarioFacadeLocal;
 import com.softbox.entity.Socio;
+import com.softbox.entity.Usuario;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -28,11 +29,8 @@ public class sociosBB implements Serializable{
     @Inject
     private SocioFacadeLocal sf;
     @Inject
-    private SocioFacadeLocal uf;
+    private UsuarioFacadeLocal uf;
     
-    private Long sigIdUsuario = Long.parseLong("1");
-    private Long sigIdSocio = Long.parseLong("10000");    
-    private List<Socio> socios;
     private Socio socio = new Socio();
 
     /**
@@ -44,16 +42,6 @@ public class sociosBB implements Serializable{
     public List<Socio> getSociosEJB() {
         return sf.findAll();
     }
-
-    public List<Socio> getSocios() {
-        return socios;
-    }
-
-    public void setSocios(List<Socio> socios) {
-        this.socios = socios;
-    }
-
-    
     
     public Socio getSocio() {
         return socio;
@@ -62,7 +50,7 @@ public class sociosBB implements Serializable{
     public void setSocio(Socio socio) {
         this.socio = socio;
     }
-    
+
     //Accede a la vista de creación de socios
     public String newSocio(){
         socio = new Socio();
@@ -71,17 +59,23 @@ public class sociosBB implements Serializable{
     
     //Crea el socio con los datos proporcionado en la vista de creación
     public String createSocio(){
-        socio.setId_Socio(sigIdSocio++);
-        socio.setId_Usuario(sigIdUsuario++);        
+        socio.setId_Socio(sf.getNextId());
+        socio.setId_Usuario(uf.getNextId());
+        socio.setPass("1234");
         socio.setFecha_ingreso(Date.valueOf(LocalDate.now()));
         sf.create(socio);
         return "sociosLista.xhtml";
     }
     
     
-    public String updateSocio(Socio soc){
-        sf.edit(soc);
+    public String modSocio(Socio soc){
+        socio = soc;
         return "modificarSocio.xhtml";
+    }
+    
+    public String updateSocio(){
+        sf.edit(socio);
+        return "sociosLista.xhtml";
     }
     
     public String readSocio(Socio soc){
@@ -90,31 +84,15 @@ public class sociosBB implements Serializable{
     }
     
     public String deleteSocio(Socio soc){
-        socio = sf.find(soc.getId_Usuario());
-        sf.remove(socio);
-//        boolean borrado = false;
-//        int i = 0;
-//        while(!borrado && i < socios.size()){
-//            if(socios.get(i).getId_Socio().compareTo(soc.getId_Socio())==0){
-//                socios.remove(i);
-//                borrado=true;
-//            }
-//            i++;
-//        }
+//        Usuario u = uf.find(soc.getId_Usuario());
+//        sf.remove(soc);
+//        uf.remove(u);
+        soc.setFecha_baja(Date.valueOf(LocalDate.now()));
+        sf.edit(soc);
         return "sociosLista.xhtml";
     }
     
     public Socio getSocioByID(Long id){
         return sf.find(id);
-
-//        boolean encontrado = false;
-//        int i = 0;
-//        while(!encontrado && i < socios.size()){
-//            if(socios.get(i).getId_Socio().compareTo(id)==0){
-//                return socios.get(i);
-//            }
-//            i++;
-//        }
-//        return null;
     }
 }

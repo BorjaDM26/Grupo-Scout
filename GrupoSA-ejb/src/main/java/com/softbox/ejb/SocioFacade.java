@@ -10,12 +10,14 @@ import com.softbox.entity.Usuario;
 import com.softbox.exception.PasswordInvalido;
 import com.softbox.exception.ScoutException;
 import com.softbox.exception.UsuarioNoExiste;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.xml.rpc.holders.BigDecimalHolder;
 
 /**
  *
@@ -37,7 +39,7 @@ public class SocioFacade extends AbstractFacade<Socio> implements SocioFacadeLoc
     }
 
     @Override
-    public void comprobarLogin(Socio u) throws ScoutException {
+    public Socio comprobarLogin(Socio u) throws ScoutException {
         Socio user = findByEmail(u);
 
         if (user != null) {
@@ -47,28 +49,28 @@ public class SocioFacade extends AbstractFacade<Socio> implements SocioFacadeLoc
         } else {
             throw new UsuarioNoExiste();
         }
+        
+        return user;
     }
 
     private Socio findByEmail(Socio u) {
-        /*Query qu = em.createNativeQuery("SELECT S.* FROM SOCIO S LEFT JOIN USUARIO U ON U.ID_USUARIO=S.ID_USUARIO WHERE U.EMAIL='" + u.getEmail() + "'");
-        List<Object[]> lista = qu.getResultList();
-        if (lista.size() <= 0) {
-            return null;
-        } else {
-            Long idSocio = (Long) lista.get(0)[0];
-            Socio s = new Socio();
-            Usuario user = em.find(Usuario.class, 1L);
 
-            return s;
-        }*/
         TypedQuery<Socio> q = em.createQuery("SELECT s FROM Socio s where s.email = :femail", Socio.class);
         q.setParameter("femail", u.getEmail());
         List<Socio> lista = q.getResultList();
         Socio s = null;
-        if(lista.size()>0) s = lista.get(0);
+        
+        if(lista.size() == 1)
+            s = lista.get(0);
         
         return s;
-        
-
     }
+    
+    public Long getNextId() {
+        TypedQuery<BigDecimal> q = (TypedQuery<BigDecimal>) em.createNativeQuery("SELECT seq_count FROM SEQUENCE where seq_name = 'S_IDSOCIO'");
+        Query q2 = em.createNativeQuery("UPDATE SEQUENCE SET SEQ_COUNT = SEQ_COUNT + 1 WHERE SEQ_NAME = 'S_IDSOCIO'");
+        q2.executeUpdate();
+        return q.getSingleResult().longValue();
+    }
+    
 }

@@ -55,7 +55,7 @@ public class Login implements Serializable {
         String cadena = "";
         
         try{
-            user.comprobarLogin(usuario);
+            usuario = user.comprobarLogin(usuario);
             ctrl.setUsuario(usuario);
             cadena = "index.xhtml";
         }catch(UsuarioNoExiste e){
