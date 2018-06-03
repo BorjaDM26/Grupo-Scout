@@ -9,7 +9,6 @@ import com.softbox.ejb.TransaccionFacadeLocal;
 import com.softbox.entity.Socio;
 import com.softbox.entity.Transaccion;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -23,8 +22,6 @@ import javax.inject.Inject;
 @SessionScoped
 public class transaccionesBB implements Serializable{
     
-    private Long sigIdTransaccion = Long.parseLong("1");   
-    private List<Transaccion> transacciones;
     private Transaccion transaccion = new Transaccion();
     private Socio socio = new Socio();
 
@@ -40,10 +37,6 @@ public class transaccionesBB implements Serializable{
 
     public List<Transaccion> getTransacciones() {
         return transacEJB.findAll();
-    }
-
-    public void setTransacciones(List<Transaccion> transacciones) {
-        this.transacciones = transacciones;
     }
 
     public Transaccion getTransaccion() {

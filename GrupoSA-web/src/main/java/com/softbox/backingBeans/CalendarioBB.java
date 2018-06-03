@@ -7,15 +7,9 @@ package com.softbox.backingBeans;
 
 import com.softbox.ejb.Entrada_CalendarioFacadeLocal;
 import com.softbox.entity.Entrada_Calendario;
-import com.softbox.entity.Socio;
 import java.io.Serializable;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 

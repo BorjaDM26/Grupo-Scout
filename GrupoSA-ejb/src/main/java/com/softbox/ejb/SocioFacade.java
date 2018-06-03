@@ -6,7 +6,6 @@
 package com.softbox.ejb;
 
 import com.softbox.entity.Socio;
-import com.softbox.entity.Usuario;
 import com.softbox.exception.CuentaBaja;
 import com.softbox.exception.PasswordInvalido;
 import com.softbox.exception.ScoutException;
@@ -18,7 +17,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.xml.rpc.holders.BigDecimalHolder;
 
 /**
  *

@@ -13,13 +13,8 @@ import com.softbox.entity.Pago_Cuota;
 import com.softbox.entity.Pago_Evento;
 import com.softbox.entity.Socio;
 import java.io.Serializable;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
@@ -31,10 +26,6 @@ import javax.inject.Inject;
 @SessionScoped
 public class pagosBB implements Serializable{
     
-    private Long sigIdPagoEvento = Long.parseLong("1");
-    private Long sigIdPagoCuota = Long.parseLong("1");
-    private List<Pago_Cuota> pagosCuotas;
-    private List<Pago_Evento> pagosEventos;
     private Pago_Cuota pago_cuota = new Pago_Cuota();
     private Pago_Evento pago_evento= new Pago_Evento();
     private boolean modo;
@@ -54,9 +45,6 @@ public class pagosBB implements Serializable{
         return pago_EventoEJB.findAll();
     }
 
-    public void setPagosEventos(List<Pago_Evento> pagosEventos) {
-        this.pagosEventos = pagosEventos;
-    }
 
     public Pago_Evento getPago_evento() {
         return pago_evento;
@@ -70,10 +58,6 @@ public class pagosBB implements Serializable{
     public List<Pago_Cuota> getPagosCuotas() {
        return pago_CuotaEJB.findAll(); 
     
-    }
-
-    public void setPagosCuotas(List<Pago_Cuota> pagosCuotas) {
-        this.pagosCuotas = pagosCuotas;
     }
 
     public Pago_Cuota getPago_Cuota() {

@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.context.SessionScoped;
 
 /**

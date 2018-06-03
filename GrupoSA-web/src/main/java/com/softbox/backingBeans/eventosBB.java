@@ -43,8 +43,6 @@ import javax.servlet.http.HttpServletResponse;
 @SessionScoped
 public class eventosBB implements Serializable {
 
-    private Long sigIdEvento = Long.parseLong("1");
-    private List<Evento> eventos;
     private Evento evento = new Evento();
     
     @Inject
@@ -58,10 +56,6 @@ public class eventosBB implements Serializable {
 
     public List<Evento> getEventos() {
         return eventoEJB.findAll();
-    }
-
-    public void setEventos(List<Evento> eventos) {
-        this.eventos = eventos;
     }
 
     public Evento getEvento() {
