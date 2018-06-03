@@ -17,17 +17,13 @@
             
                 <h:form id="formCrearTransaccion">
                     <div class="form-row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <h:outputLabel for="inputImporte">Importe *</h:outputLabel>
                             <h:inputText a:type="number" a:step="any" value="#{transaccionesBB.transaccion.importe}" class="form-control" id="inputImporte" a:required="true" a:placeholder="Importe"/>
                         </div>
-                        <div class="form-group col-md-4">
-                            <h:outputLabel for="inputNombre">Socio: Nombre *</h:outputLabel>
-                            <h:inputText a:type="text" value="#{transaccionesBB.transaccion.socio.nombre}" class="form-control" id="inputNombre" a:required="true" a:placeholder="Nombre"/>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <h:outputLabel for="inputApellidos">Socio: Apellidos *</h:outputLabel>
-                            <h:inputText a:type="text" value="#{transaccionesBB.transaccion.socio.apellidos}" class="form-control" id="inputApellidos" a:required="true" a:placeholder="Apellidos"/>
+                        <div class="form-group col-md-6">
+                            <h:outputLabel for="inputIdentificador">Socio: Identificador *</h:outputLabel>
+                            <h:inputText a:type="number" value="#{transaccionesBB.transaccion.socio.id_Usuario}" class="form-control" id="inputIdentificador" a:required="true" a:placeholder="Identificador"/>
                         </div>
                     </div>
                     <div class="form-row">

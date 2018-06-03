@@ -7,6 +7,7 @@ package com.softbox.backingBeans;
 
 import com.softbox.ejb.SocioFacadeLocal;
 import com.softbox.entity.Socio;
+import com.softbox.exception.CuentaBaja;
 import com.softbox.exception.PasswordInvalido;
 import com.softbox.exception.ScoutException;
 import com.softbox.exception.UsuarioNoExiste;
@@ -31,6 +32,9 @@ public class LoginAdmin {
     @Inject
     private SocioFacadeLocal user;
 
+    @Inject
+    private notificacionesBB notBB;
+    
     public LoginAdmin() {
         usuario = new Socio();
     }
@@ -50,6 +54,7 @@ public class LoginAdmin {
         try{
             usuario = user.comprobarLogin(usuario);
             ctrl.setUsuario(usuario);
+            notBB.calcularNoLeidas(usuario.getId_Usuario());
             cadena = "indexAdmin.xhtml";
         }catch(UsuarioNoExiste e){
            FacesMessage fm = new FacesMessage("La cuenta no existe");
@@ -57,6 +62,9 @@ public class LoginAdmin {
         }catch(PasswordInvalido e){
             FacesMessage fm = new FacesMessage("La contraseña no es correcta");
             FacesContext.getCurrentInstance().addMessage("login:pass", fm);
+        }catch(CuentaBaja e){
+            FacesMessage fm = new FacesMessage("La cuenta esta dada de baja, contacta con el administrador");
+            FacesContext.getCurrentInstance().addMessage("login:user", fm);
         }catch(ScoutException e){
             FacesMessage fm = new FacesMessage("Error: " + e);
             FacesContext.getCurrentInstance().addMessage(null, fm);

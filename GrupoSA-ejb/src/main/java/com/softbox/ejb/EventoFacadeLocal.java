@@ -28,13 +28,21 @@ public interface EventoFacadeLocal {
     List<Evento> findAll();
 
     List<Evento> findRange(int[] range);
+
+    int count();
+    
+    void crear(Evento evento);
+    
+    Long getNextId();
+    
+    void modificar(Evento evento);
+
+    public void borrar(Evento evento);
     
     List<Evento> findBySeccion(Long id_Seccion);
     
     boolean usuarioInscrito(Long id_Socio, Long id_Evento);
     
     void inscribirSocio(Long id_Socio, Long id_Evento);
-    
-    int count();
-    
+
 }

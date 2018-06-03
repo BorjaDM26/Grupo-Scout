@@ -30,4 +30,9 @@ public interface Pago_EventoFacadeLocal {
 
     int count();
     
+    void modificar(Pago_Evento pago_Evento);
+    
+    Long getNextId();
+    
+    void crear(Pago_Evento pago_Evento);
 }

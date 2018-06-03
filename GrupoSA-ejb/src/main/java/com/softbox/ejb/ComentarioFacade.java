@@ -31,6 +31,7 @@ public class ComentarioFacade extends AbstractFacade<Comentario> implements Come
         super(Comentario.class);
     }
     
+    @Override
     public List<Comentario> findByEvento(Long id_Evento){
         TypedQuery tq = em.createQuery("SELECT c FROM Comentario c WHERE c.evento.id_evento = :fevento", Comentario.class).setParameter("fevento", id_Evento);
         List<Comentario> lista = tq.getResultList();

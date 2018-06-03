@@ -21,7 +21,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <h:outputLabel for="inputNombre">Nombre *</h:outputLabel>
-                        <h:inputText a:type="text" value="#{seccionesAdminBB.seccion.nombre}" class="form-control" id="inputNombre" a:required="true" a:placeholder="Nombre"/>
+                        <h:inputText a:type="text" value="#{seccionesAdminBB.seccion.nombre}" class="form-control" id="inputNombre" disabled="true" a:required="true" a:placeholder="Nombre"/>
                     </div>
                     
                 </div>
@@ -39,7 +39,7 @@
                         <h:inputText a:type="text"  value="#{seccionesAdminBB.seccion.descripcion}" class="form-control" id="inputDescripcion" a:placeholder="Descripción"/>
                     </div>
                 </div>
-                <h:commandButton action="listarSecciones.xhtml" class="btn btn-primary" value="Modificar"/>
+                <h:commandButton action="#{seccionesAdminBB.updateSeccion()}" class="btn btn-primary" value="Modificar"/>
                 &nbsp;&nbsp;
                 <h:button outcome="listarSecciones.xhtml" class="btn btn-primary" value="Volver"/>
             </h:form>

@@ -63,9 +63,9 @@
                     <div class="form-group col-md-4">
                         <h:outputLabel for="inputPerfil">Perfil *</h:outputLabel>
                         <h:selectOneMenu id="inputPerfil" value="#{sociosBB.socio.perfil}" required="true" requiredMessage="*Atributo obligatorio*" class="form-control">
-                            <f:selectItem itemLabel="Administrador" itemValue="Administrador"/>
-                            <f:selectItem itemLabel="Scouter" itemValue="Scouter"/>
-                            <f:selectItem itemLabel="Educando" itemValue="Educando"/>
+                            <f:selectItem itemLabel="Administrador" itemValue="ROOT"/>
+                            <f:selectItem itemLabel="Scouter" itemValue="SCOUT"/>
+                            <f:selectItem itemLabel="Educando" itemValue="EDUCANDO"/>
                             <f:selectItem itemLabel="Elegir" noSelectionOption="true"/>
                         </h:selectOneMenu>
                         <h:message for="inputPerfil" style="color: red"/>
@@ -73,15 +73,14 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <h:outputLabel for="inputGrupo">Grupo</h:outputLabel>
-                        <h:selectOneMenu id="inputGrupo" value="#{sociosBB.socio.grupo}" class="form-control">
-                            <f:selectItem itemLabel="Grupo" itemValue="Grupo"/>
+                        <h:outputLabel for="inputGrupo">Grupo*</h:outputLabel>
+                        <h:selectOneMenu id="inputGrupo" value="#{sociosBB.socio.grupo}" class="form-control" required="true">
                             <f:selectItem itemLabel="Castores" itemValue="Castores"/>
                             <f:selectItem itemLabel="Manada" itemValue="Manada"/>
                             <f:selectItem itemLabel="Tropa" itemValue="Tropa"/>
                             <f:selectItem itemLabel="Unidad" itemValue="Unidad"/>
                             <f:selectItem itemLabel="Clan" itemValue="Clan"/>
-                            <f:selectItem itemLabel="Elegir"/>
+                            <f:selectItem itemLabel="Elegir noSelectionOption="true""/>
                         </h:selectOneMenu>
                     </div>
                     <div class="form-group col-md-4">

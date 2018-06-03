@@ -32,7 +32,8 @@ public interface SocioFacadeLocal {
     List<Socio> findRange(int[] range);
 
     int count();
-    
+
+    Long getNextId();
     Socio getByIdUser (Long id_user);
     
 }

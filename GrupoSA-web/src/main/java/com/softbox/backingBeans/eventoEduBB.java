@@ -27,8 +27,7 @@ public class eventoEduBB implements Serializable{
     private EventoFacadeLocal eventoEjb;
     @Inject
     private ComentarioFacadeLocal comenEjb;
-    @Inject 
-    private ControlAutorizacion ctrl;
+    
     private Evento evt;
     private List<Comentario> listComen;
     

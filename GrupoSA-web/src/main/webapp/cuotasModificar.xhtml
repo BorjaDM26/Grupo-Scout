@@ -36,7 +36,7 @@
                     <h:outputLabel for="inputDescripcion">Descripción *</h:outputLabel>
                     <h:inputTextarea a:type="text" value="#{cuotasBB.cuota.descripcion}" class="form-control" id="inputDescripcion" a:required="true" a:rows="4" a:placeholder="Descripción de la cuota"/>
                 </div>
-                <h:commandButton action="cuotasLista.xhtml" class="btn btn-primary" value="Modificar"/>
+                <h:commandButton action="#{cuotasBB.updateCuota()}" class="btn btn-primary" value="Modificar"/>
                 &nbsp;&nbsp;
                 <h:button outcome="cuotasLista.xhtml" class="btn btn-primary" value="Volver"/>
             </h:form>

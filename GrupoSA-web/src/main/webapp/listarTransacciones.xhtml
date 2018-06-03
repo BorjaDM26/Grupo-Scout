@@ -56,7 +56,7 @@
                             &nbsp;
                         </c:if>
                         <c:if test="#{controlAutorizacion.socio.getPerfil() == 'ROOT'}">
-                            <h:commandLink action="#{transaccionesBB.updateTransaccion(tran)}"><i class="fas fa-edit"></i></h:commandLink>
+                            <h:commandLink action="#{transaccionesBB.modTransaccion(tran)}"><i class="fas fa-edit"></i></h:commandLink>
                             &nbsp;
                             <h:commandLink action="#{transaccionesBB.deleteTransaccion(tran)}"><i class="far fa-trash-alt"></i></h:commandLink>
                             &nbsp;

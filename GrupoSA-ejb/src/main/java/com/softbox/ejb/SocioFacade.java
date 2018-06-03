@@ -6,10 +6,11 @@
 package com.softbox.ejb;
 
 import com.softbox.entity.Socio;
-import com.softbox.entity.Usuario;
+import com.softbox.exception.CuentaBaja;
 import com.softbox.exception.PasswordInvalido;
 import com.softbox.exception.ScoutException;
 import com.softbox.exception.UsuarioNoExiste;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -41,8 +42,12 @@ public class SocioFacade extends AbstractFacade<Socio> implements SocioFacadeLoc
         Socio user = findByEmail(u);
 
         if (user != null) {
-            if (!user.getPass().equals(u.getPass())) {
-                throw new PasswordInvalido();
+            if(user.getFecha_baja()== null){
+                if (!user.getPass().equals(u.getPass())) {
+                    throw new PasswordInvalido();
+                }
+            }else{
+                throw new CuentaBaja();
             }
         } else {
             throw new UsuarioNoExiste();
@@ -62,11 +67,16 @@ public class SocioFacade extends AbstractFacade<Socio> implements SocioFacadeLoc
             s = lista.get(0);
         
         return s;
-        
-
     }
     
     @Override
+    public Long getNextId() {
+        TypedQuery<BigDecimal> q = (TypedQuery<BigDecimal>) em.createNativeQuery("SELECT seq_count FROM SEQUENCE where seq_name = 'S_IDSOCIO'");
+        Query q2 = em.createNativeQuery("UPDATE SEQUENCE SET SEQ_COUNT = SEQ_COUNT + 1 WHERE SEQ_NAME = 'S_IDSOCIO'");
+        q2.executeUpdate();
+        return q.getSingleResult().longValue();
+    }
+    
     public Socio getByIdUser (Long id_user){
         TypedQuery<Socio> q = em.createQuery("SELECT s FROM Socio s where s.id_Usuario = :fid_user", Socio.class);
         q.setParameter("fid_user", id_user);

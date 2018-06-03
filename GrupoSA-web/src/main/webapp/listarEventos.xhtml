@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <ui:composition template="templates/mainAdmin.xhtml">
         <ui:define name="title">
             Lista de Eventos
@@ -45,7 +46,7 @@
                             &nbsp;
                         </c:if>
                         <c:if test="#{controlAutorizacion.socio.getPerfil() == 'ROOT'}">
-                            <h:commandLink action="#{eventosBB.updateEvento(even)}"><i class="fas fa-edit"></i></h:commandLink>
+                            <h:commandLink action="#{eventosBB.modEvento(even)}"><i class="fas fa-edit"></i></h:commandLink>
                             &nbsp;
                             <h:commandLink action="#{eventosBB.deleteEvento(even)}"><i class="far fa-trash-alt"></i></h:commandLink>
                         </c:if>
@@ -57,9 +58,9 @@
                             <h:outputText value="Descargas: Asistentes, Inscritos"/>
                         </f:facet>
                         <h:form>
-                                <a href="resources/Asistentes.xlsx" onclick="#{eventosBB.descargaEvento(even,0)}" download="#{even.nombre}Asistentes.xlsx"><i class="float-center fas fa-download"></i></a>
-                                &nbsp;
-                                <a href="resources/Inscritos.xlsx" onclick="#{eventosBB.descargaEvento(even,1)}" download="#{even.nombre}Inscritos.xlsx"><i class="float-center fas fa-download"></i></a>
+                            <h:commandLink  action="#{eventosBB.descargaEvento(even, 0)}"><i class="float-center fas fa-download"></i></h:commandLink>
+                            &nbsp;
+                            <h:commandLink  action="#{eventosBB.descargaEvento(even, 1)}"><i class="float-center fas fa-download"></i></h:commandLink>
                         </h:form>
                     </h:column>
                 </c:if>

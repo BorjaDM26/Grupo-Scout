@@ -6,9 +6,12 @@
 package com.softbox.ejb;
 
 import com.softbox.entity.Usuario;
+import java.math.BigDecimal;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -50,6 +53,13 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
             if(!user.getPass().equals(u.getPass())){
             }
         }
+    }
+    
+    public Long getNextId() {
+        TypedQuery<BigDecimal> q = (TypedQuery<BigDecimal>) em.createNativeQuery("SELECT seq_count FROM SEQUENCE where seq_name = 'S_IDUSUARIO'");
+        Query q2 = em.createNativeQuery("UPDATE SEQUENCE SET SEQ_COUNT = SEQ_COUNT + 1 WHERE SEQ_NAME = 'S_IDUSUARIO'");
+        q2.executeUpdate();
+        return q.getSingleResult().longValue();
     }
     
 }

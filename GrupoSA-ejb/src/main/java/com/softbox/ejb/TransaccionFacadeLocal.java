@@ -30,4 +30,10 @@ public interface TransaccionFacadeLocal {
 
     int count();
     
+    void modificar(Transaccion transaccion);
+    
+    Long getNextId();
+    
+    void crear (Transaccion transaccion);
+    
 }
