@@ -31,7 +31,8 @@ public class misDocs implements Serializable{
    private Documento doc;
    private Long id_usuario;
    private List<Socio> socios;
-    
+   private List<Documento> listaDocs;
+   
     /* Interfaz de EJB */
     @Inject
     private DocumentoFacadeLocal docEJB;

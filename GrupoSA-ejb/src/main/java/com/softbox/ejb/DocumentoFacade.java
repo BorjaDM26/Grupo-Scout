@@ -41,6 +41,7 @@ public class DocumentoFacade extends AbstractFacade<Documento> implements Docume
         return q.getSingleResult().longValue();
     }
     
+    @Override
     public List<Documento> getByIdUser(Long id_user){
         TypedQuery<Documento> query = em.createQuery("Select d from Documento d where d.socio.id_Usuario = :fid_user", Documento.class);
         query.setParameter("fid_user", id_user);

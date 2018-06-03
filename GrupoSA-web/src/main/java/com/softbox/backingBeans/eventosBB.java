@@ -6,13 +6,9 @@
 package com.softbox.backingBeans;
 
 import com.softbox.ejb.EventoFacadeLocal;
-<<<<<<< HEAD
 import com.softbox.ejb.Notificacion_EventoFacadeLocal;
-=======
->>>>>>> 81beda444e659e624c77f2c1f31600a93e5247da
 import com.softbox.ejb.SocioFacadeLocal;
 import com.softbox.entity.Evento;
-import com.softbox.entity.Notificacion_Documento;
 import com.softbox.entity.Notificacion_Evento;
 import com.softbox.entity.Seccion;
 import com.softbox.entity.Socio;
@@ -36,11 +32,8 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.file.Paths;
-<<<<<<< HEAD
 import java.sql.Date;
 import java.time.LocalDate;
-=======
->>>>>>> 81beda444e659e624c77f2c1f31600a93e5247da
 import java.util.Objects;
 import javax.inject.Inject;
 import javax.faces.context.FacesContext;
@@ -65,12 +58,9 @@ public class eventosBB implements Serializable {
     private SocioFacadeLocal socioEJB;
     
     @Inject
-<<<<<<< HEAD
     private Notificacion_EventoFacadeLocal notEJB;
     
     @Inject
-=======
->>>>>>> 81beda444e659e624c77f2c1f31600a93e5247da
     private notificacionesBB notifBB;
 
     /**
@@ -103,23 +93,7 @@ public class eventosBB implements Serializable {
     public String createEvento() {
         evento.setId_evento(eventoEJB.getNextId());
         Long id_Seccion = evento.getSeccion().getId_seccion();
-<<<<<<< HEAD
-=======
-        
-        
-            List<Socio> socios= socioEJB.findAll();
-            if(!socios.isEmpty()){
-                
-                for(Socio soc : socios){
-                    if(Objects.equals(soc.getSeccion().getId_seccion(), id_Seccion)){
-                        notifBB.crearNotifEvento(soc, evento);
-                    }
 
-    
-                }                
-            }
-
->>>>>>> 81beda444e659e624c77f2c1f31600a93e5247da
         eventoEJB.crear(evento);
         
             List<Socio> socios= socioEJB.findAll();
