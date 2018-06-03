@@ -32,6 +32,9 @@ public class LoginAdmin {
     @Inject
     private SocioFacadeLocal user;
 
+    @Inject
+    private notificacionesBB notBB;
+    
     public LoginAdmin() {
         usuario = new Socio();
     }
@@ -51,6 +54,7 @@ public class LoginAdmin {
         try{
             usuario = user.comprobarLogin(usuario);
             ctrl.setUsuario(usuario);
+            notBB.calcularNoLeidas(usuario.getId_Usuario());
             cadena = "indexAdmin.xhtml";
         }catch(UsuarioNoExiste e){
            FacesMessage fm = new FacesMessage("La cuenta no existe");

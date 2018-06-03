@@ -109,6 +109,25 @@ public class notificacionesBB implements Serializable{
         return "misNotificaciones.xhtml";
     }
 
+    public void calcularNoLeidas(Long id_usuario){
+        int noLeidas = 0;
+        
+        List<Notificacion_Documento> listaDoc = notifs_doc = not_docEJB.findByIdUser(id_usuario);
+        List<Notificacion_Evento> listaEvt = notifs_evento = not_EventoEJB.findByIdUser(id_usuario);
+        
+        for(Notificacion_Documento a : listaDoc){
+            if(a.getEstado().equals("False")){
+                noLeidas++;
+            }
+        }
+
+        for(Notificacion_Evento a : listaEvt){
+            if(a.getEstado().equals("False")){
+                noLeidas++;
+            }
+        }
+        setNoLeidas(noLeidas);
+    }
     public Notificacion_Evento getNotificacion_Evento(Long id){
         return not_EventoEJB.getNotById(id);
     }

@@ -36,6 +36,9 @@ public class Login implements Serializable {
 
     @Inject
     private ControlAutorizacion ctrl;
+    
+    @Inject
+    private notificacionesBB notBB;
 
     public Login() {
         usuario = new Socio();
@@ -58,6 +61,7 @@ public class Login implements Serializable {
         try{
             usuario = user.comprobarLogin(usuario);
             ctrl.setUsuario(usuario);
+            notBB.calcularNoLeidas(usuario.getId_Usuario());
             cadena = "index.xhtml";
         }catch(UsuarioNoExiste e){
            FacesMessage fm = new FacesMessage("La cuenta no existe");
