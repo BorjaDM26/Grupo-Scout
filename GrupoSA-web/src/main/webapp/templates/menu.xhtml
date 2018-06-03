@@ -67,7 +67,7 @@
                                         <img style="background-color: white" class="icono_scout" src="resources/icons/admin.png"/>
                                     </c:if>
                                     <c:if test="#{controlAutorizacion.socio.perfil != 'ROOT' and controlAutorizacion.socio.perfil != 'SCOUT'}">
-                                        <img class="icono_scout" src="./resources/icons/#{controlAutorizacion.socio.seccion.nombre}.png"/>
+                                        <img class="icono_scout" src="./resources/icons/#{controlAutorizacion.socio.seccion.nombre.substring(0,1).toLowerCase().concat(controlAutorizacion.socio.seccion.nombre.substring(1))}.png"/>
                                     </c:if>
                                     <c:if test="#{!empty controlAutorizacion.socio.getNombre()}">
                                         <h:outputText value="#{controlAutorizacion.socio.getNombre()}" style="margin-right: 3px;"></h:outputText> 
