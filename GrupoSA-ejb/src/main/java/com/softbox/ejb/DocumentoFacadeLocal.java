@@ -30,4 +30,5 @@ public interface DocumentoFacadeLocal {
 
     int count();
     
+    Long getNextId();
 }
