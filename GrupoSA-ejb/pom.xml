@@ -43,10 +43,7 @@
             <artifactId>javaee-api</artifactId>
             <version>7.0</version>
             <type>jar</type>
-<<<<<<< HEAD
-=======
             <scope>provided</scope>
->>>>>>> 82543e46016b02071c0bb6f380f57ef4db60ff39
         </dependency>
     </dependencies>
 

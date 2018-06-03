@@ -14,13 +14,8 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.Serializable;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -34,14 +29,11 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.file.Paths;
-<<<<<<< HEAD
 import javax.inject.Inject;
-=======
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import javax.servlet.http.HttpServletResponse;
->>>>>>> 82543e46016b02071c0bb6f380f57ef4db60ff39
 
 /**
  *
@@ -57,12 +49,7 @@ public class eventosBB implements Serializable {
     
     @Inject
     private EventoFacadeLocal eventoEJB;
-<<<<<<< HEAD
 
-=======
-    
-    
->>>>>>> 82543e46016b02071c0bb6f380f57ef4db60ff39
     /**
      * Creates a new instance of sociosBB
      */
@@ -120,7 +107,7 @@ public class eventosBB implements Serializable {
         return "listarEventos.xhtml";
     }
 
-    public String getDireccionDescarga(int modo) throws UnsupportedEncodingException {
+ public String getDireccionDescarga(int modo) throws UnsupportedEncodingException {
         String nombreArchivo = "";
         if (modo == 0) {
             nombreArchivo = "Asistentes.xlsx";
@@ -130,23 +117,14 @@ public class eventosBB implements Serializable {
         eventosBB demo = new eventosBB();
         String path2 = demo.getClass().getResource("").getPath();
         String fullPath = URLDecoder.decode(path2, "UTF-8");
-<<<<<<< HEAD
-        
-        String pathArr[] = fullPath.split("/GrupoSA-ear/target/");
-        
-=======
 
+        //String pathArr[] = fullPath.split("/WEB-INF/classes/backingBeans/");
         String pathArr[] = fullPath.split("/GrupoSA-ear/target/gfdeploy/GrupoSA-ear/GrupoSA-web-1.0-SNAPSHOT_war/WEB-INF/classes/com/softbox/backingBeans/");
->>>>>>> 82543e46016b02071c0bb6f380f57ef4db60ff39
         fullPath = pathArr[0];
 
         String reponsePath = "";
-<<<<<<< HEAD
-        reponsePath = new File(fullPath).getPath() +File.separatorChar+"main"+File.separatorChar+"webapp"+File.separatorChar+ "resources"+File.separatorChar+nombreArchivo;
-=======
-      
+        //reponsePath = new File(fullPath).getPath() + File.separatorChar + "resources"+File.separatorChar+nombreArchivo;
         reponsePath = new File(fullPath).getPath() + File.separatorChar + "GrupoSA-web" + File.separatorChar + "src" + File.separatorChar + "main" + File.separatorChar + "webapp" + File.separatorChar + "resources" + File.separatorChar + nombreArchivo;
->>>>>>> 82543e46016b02071c0bb6f380f57ef4db60ff39
         return reponsePath;
     }
 

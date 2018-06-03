@@ -10,10 +10,7 @@ import java.math.BigDecimal;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-<<<<<<< HEAD
-=======
 import javax.persistence.Query;
->>>>>>> 82543e46016b02071c0bb6f380f57ef4db60ff39
 import javax.persistence.TypedQuery;
 
 /**
@@ -35,13 +32,13 @@ public class SeccionFacade extends AbstractFacade<Seccion> implements SeccionFac
         super(Seccion.class);
     }
     
-<<<<<<< HEAD
+    @Override
     public Seccion findByNombre(String nombre){
         TypedQuery<Seccion> q = em.createQuery("SELECT S FROM Seccion S WHERE S.nombre = :fnombre", Seccion.class);
         q.setParameter("fnombre", nombre);
         return q.getResultList().get(0);
     }
-=======
+
     @Override
     public Long getNextId() {
         TypedQuery<BigDecimal> q = (TypedQuery<BigDecimal>) em.createNativeQuery("SELECT seq_count FROM SEQUENCE where seq_name = 'S_IDSECCION'");
@@ -49,8 +46,5 @@ public class SeccionFacade extends AbstractFacade<Seccion> implements SeccionFac
         q2.executeUpdate();
         return q.getSingleResult().longValue();
     }
-    
-        
-    
->>>>>>> 82543e46016b02071c0bb6f380f57ef4db60ff39
+
 }

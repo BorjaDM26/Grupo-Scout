@@ -8,7 +8,6 @@ package com.softbox.backingBeans;
 import com.softbox.ejb.CuotaFacadeLocal;
 import com.softbox.entity.Cuota;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
