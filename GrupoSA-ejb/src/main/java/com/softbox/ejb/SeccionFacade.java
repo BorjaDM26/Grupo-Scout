@@ -36,7 +36,12 @@ public class SeccionFacade extends AbstractFacade<Seccion> implements SeccionFac
     public Seccion findByNombre(String nombre){
         TypedQuery<Seccion> q = em.createQuery("SELECT S FROM Seccion S WHERE S.nombre = :fnombre", Seccion.class);
         q.setParameter("fnombre", nombre);
-        return q.getResultList().get(0);
+        Seccion s = null;
+        
+        if(q.getResultList().size() >0){
+            s = q.getResultList().get(0);
+        }
+        return s;
     }
 
     @Override

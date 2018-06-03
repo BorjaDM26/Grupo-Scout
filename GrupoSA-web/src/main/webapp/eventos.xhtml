@@ -16,7 +16,7 @@
                 <div class="row" style="margin-bottom: 20px;">
 
                 <h:panelGroup layout="block" class="col-md-12" >
-                    <div class="panel_seccion" style="background-image: url('resources/fondos/#{seccionesBB.seccion.nombre}.png')"></div>
+                    <div class="panel_seccion" style="background-image: url('resources/fondos/#{seccionesBB.seccion.nombre.substring(0,1).toLowerCase().concat(seccionesBB.seccion.nombre.substring(1))}.png')"></div>
                     <div >    
                         <p class="desc_seccion"><i class="fas fa-angle-left indicador" style="margin-right: 10px"></i> <h:outputText value="#{seccionesBB.seccion.descripcion}" /> <i class="fas fa-angle-right indicador" style="margin-left:3px"></i></p>
                     </div>

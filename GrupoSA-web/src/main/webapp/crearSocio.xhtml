@@ -73,14 +73,14 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <h:outputLabel for="inputGrupo">Grupo</h:outputLabel>
-                        <h:selectOneMenu id="inputGrupo" value="#{sociosBB.socio.grupo}" class="form-control">
+                        <h:outputLabel for="inputGrupo">Grupo*</h:outputLabel>
+                        <h:selectOneMenu id="inputGrupo" value="#{sociosBB.socio.grupo}" class="form-control" required="true">
                             <f:selectItem itemLabel="Castores" itemValue="Castores"/>
                             <f:selectItem itemLabel="Manada" itemValue="Manada"/>
                             <f:selectItem itemLabel="Tropa" itemValue="Tropa"/>
                             <f:selectItem itemLabel="Unidad" itemValue="Unidad"/>
                             <f:selectItem itemLabel="Clan" itemValue="Clan"/>
-                            <f:selectItem itemLabel="Elegir"/>
+                            <f:selectItem itemLabel="Elegir noSelectionOption="true""/>
                         </h:selectOneMenu>
                     </div>
                     <div class="form-group col-md-4">

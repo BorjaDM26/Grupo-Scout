@@ -31,12 +31,12 @@
                 <div class="col-md-12"  style="margin-bottom: 20px;">
                     <h1 class="titulo_evento">¿Quieres venir? ¡Inscríbete!</h1>
                     <c:if test="#{!empty controlAutorizacion.socio}">
-                        <c:if test="#{!eventoEduBB.socioInscrito(controlAutorizacion.socio.id_Socio)}">
+                        <c:if test="#{!eventoEduBB.socioInscrito(controlAutorizacion.socio.id_Usuario)}">
                             <h:form>
-                                <h:commandButton action="#{eventoEduBB.inscribirseEvento(controlAutorizacion.socio.id_Socio)}" value="Inscribirme" class="btn btn-inscribirse"></h:commandButton>
+                                <h:commandButton action="#{eventoEduBB.inscribirseEvento(controlAutorizacion.socio.id_Usuario)}" value="Inscribirme" class="btn btn-inscribirse"></h:commandButton>
                             </h:form>
                         </c:if>
-                        <c:if test="#{eventoEduBB.socioInscrito(controlAutorizacion.socio.id_Socio)}">
+                        <c:if test="#{eventoEduBB.socioInscrito(controlAutorizacion.socio.id_Usuario)}">
                             <div class="offset-md-2 col-md-8 text-center">
                                 <h4 class="btn btn-apuntado" >¡Ya estás apuntado!</h4>
                             </div>

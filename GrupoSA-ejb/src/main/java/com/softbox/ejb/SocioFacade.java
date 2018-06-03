@@ -7,6 +7,7 @@ package com.softbox.ejb;
 
 import com.softbox.entity.Socio;
 import com.softbox.entity.Usuario;
+import com.softbox.exception.CuentaBaja;
 import com.softbox.exception.PasswordInvalido;
 import com.softbox.exception.ScoutException;
 import com.softbox.exception.UsuarioNoExiste;
@@ -43,8 +44,12 @@ public class SocioFacade extends AbstractFacade<Socio> implements SocioFacadeLoc
         Socio user = findByEmail(u);
 
         if (user != null) {
-            if (!user.getPass().equals(u.getPass())) {
-                throw new PasswordInvalido();
+            if(user.getFecha_baja()== null){
+                if (!user.getPass().equals(u.getPass())) {
+                    throw new PasswordInvalido();
+                }
+            }else{
+                throw new CuentaBaja();
             }
         } else {
             throw new UsuarioNoExiste();
