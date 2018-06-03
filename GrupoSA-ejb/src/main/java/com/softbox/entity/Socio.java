@@ -55,7 +55,7 @@ public class Socio extends Usuario implements Serializable{
     @Column(name = "fecha_ingreso", nullable = false)
     private Date fecha_ingreso;
     @Temporal(TemporalType.DATE)
-    @Column(name = "fecha_baja", nullable = false)
+    @Column(name = "fecha_baja")
     private Date fecha_baja;
     private String cargo;
     private String ambito;

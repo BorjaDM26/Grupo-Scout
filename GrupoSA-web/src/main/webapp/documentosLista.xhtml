@@ -13,7 +13,11 @@
         <ui:define name="titulo_modulo">
             Documentos Educandos
         </ui:define>
+        
         <ui:define name="contenido">
+            <h:form style="min-height: 55px">
+                    <h:commandLink action="#{misDocs.crearDocumento()}" class="btn btn-success float-right"><i class="fas fa-plus"></i> Crear documento</h:commandLink>
+            </h:form>
             <h:dataTable id="DocumentoLista" value="#{misDocs.getLista_docs()}" var="doc" class="table">
                 <h:column>
                     <f:facet name="header">
@@ -48,7 +52,7 @@
                     <f:facet name="header">
                         <h:outputText value="Fecha"/>
                     </f:facet>
-                    <h:outputText value="#{doc.fecha}"/>
+                    <h:outputText value="#{doc.fecha}"><f:convertDateTime pattern="yyyy-MM-dd"/></h:outputText>
                 </h:column>
                 <h:column>
                     <f:facet name="header">
@@ -56,6 +60,8 @@
                     </f:facet>
                     <h:outputText value="#{doc.estado}"/>
                 </h:column>
+                
+                
                 
                 <h:column>
                     <f:facet name="header">
@@ -68,7 +74,7 @@
                         <c:if test="#{controlAutorizacion.socio.getPerfil() == 'ROOT' }">
                         <a style="color: #847BFF;cursor:pointer" data-toggle="modal" data-target="#modalFichero"><i class="fas fa-edit"></i></a>
                         &nbsp;
-                        <h:commandLink action="#{misDocs.borrarDoc(doc)}"><i class="far fa-trash-alt"></i></h:commandLink>
+                        <h:commandLink action="#{misDocs.borrarDocAdmin(doc)}"><i class="far fa-trash-alt"></i></h:commandLink>
                         &nbsp;
                         
                         
