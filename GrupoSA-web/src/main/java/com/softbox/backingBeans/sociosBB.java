@@ -89,9 +89,6 @@ public class sociosBB implements Serializable{
     }
     
     public String deleteSocio(Socio soc){
-//        Usuario u = uf.find(soc.getId_Usuario());
-//        sf.remove(soc);
-//        uf.remove(u);
         soc.setFecha_baja(Date.valueOf(LocalDate.now()));
         sf.edit(soc);
         return "sociosLista.xhtml";
