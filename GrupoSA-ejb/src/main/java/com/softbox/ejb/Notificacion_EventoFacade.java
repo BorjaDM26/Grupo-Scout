@@ -7,10 +7,12 @@ package com.softbox.ejb;
 
 import com.softbox.entity.Notificacion_Documento;
 import com.softbox.entity.Notificacion_Evento;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -43,5 +45,15 @@ public class Notificacion_EventoFacade extends AbstractFacade<Notificacion_Event
         TypedQuery<Notificacion_Evento> query = em.createQuery("Select N from Notificacion_Evento N where N.socio.id_Usuario  = :fid_user", Notificacion_Evento.class);
         query.setParameter("fid_user", id_user);
         return query.getResultList();
+    }
+    
+    
+    
+    @Override
+    public Long getNextId() {
+        TypedQuery<BigDecimal> q = (TypedQuery<BigDecimal>) em.createNativeQuery("SELECT seq_count FROM SEQUENCE where seq_name = 'S_NOTEVENTO'");
+        Query q2 = em.createNativeQuery("UPDATE SEQUENCE SET SEQ_COUNT = SEQ_COUNT + 1 WHERE SEQ_NAME = 'S_NOTEVENTO'");
+        q2.executeUpdate();
+        return q.getSingleResult().longValue();
     }
 }

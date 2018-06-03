@@ -6,6 +6,7 @@
 package com.softbox.backingBeans;
 
 import com.softbox.ejb.EventoFacadeLocal;
+import com.softbox.ejb.SocioFacadeLocal;
 import com.softbox.entity.Evento;
 import com.softbox.entity.Seccion;
 import com.softbox.entity.Socio;
@@ -29,6 +30,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.file.Paths;
+import java.util.Objects;
 import javax.inject.Inject;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -47,6 +49,12 @@ public class eventosBB implements Serializable {
     
     @Inject
     private EventoFacadeLocal eventoEJB;
+    
+    @Inject
+    private SocioFacadeLocal socioEJB;
+    
+    @Inject
+    private notificacionesBB notifBB;
 
     /**
      * Creates a new instance of sociosBB
@@ -77,6 +85,21 @@ public class eventosBB implements Serializable {
     //Crea el evento con los datos proporcionado en la vista de creación
     public String createEvento() {
         evento.setId_evento(eventoEJB.getNextId());
+        Long id_Seccion = evento.getSeccion().getId_seccion();
+        
+        
+            List<Socio> socios= socioEJB.findAll();
+            if(!socios.isEmpty()){
+                
+                for(Socio soc : socios){
+                    if(Objects.equals(soc.getSeccion().getId_seccion(), id_Seccion)){
+                        notifBB.crearNotifEvento(soc, evento);
+                    }
+
+    
+                }                
+            }
+
         eventoEJB.crear(evento);
         return "listarEventos.xhtml";
     }
