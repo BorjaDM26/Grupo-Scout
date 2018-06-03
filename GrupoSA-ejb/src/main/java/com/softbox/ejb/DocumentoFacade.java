@@ -7,6 +7,7 @@ package com.softbox.ejb;
 
 import com.softbox.entity.Documento;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -38,6 +39,12 @@ public class DocumentoFacade extends AbstractFacade<Documento> implements Docume
         Query q2 = em.createNativeQuery("UPDATE SEQUENCE SET SEQ_COUNT = SEQ_COUNT + 1 WHERE SEQ_NAME = 'S_DOCUMENTO'");
         q2.executeUpdate();
         return q.getSingleResult().longValue();
+    }
+    
+    public List<Documento> getByIdUser(Long id_user){
+        TypedQuery<Documento> query = em.createQuery("Select d from Documento d where d.socio.id_Usuario = :fid_user", Documento.class);
+        query.setParameter("fid_user", id_user);
+        return query.getResultList();
     }
     
 }

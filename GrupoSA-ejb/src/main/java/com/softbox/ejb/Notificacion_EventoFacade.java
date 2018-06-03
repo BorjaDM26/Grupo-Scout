@@ -32,6 +32,14 @@ public class Notificacion_EventoFacade extends AbstractFacade<Notificacion_Event
         super(Notificacion_Evento.class);
     }
     
+    @Override
+    public List<Notificacion_Evento> findByIdEvento (Long id_evento){
+       TypedQuery<Notificacion_Evento> query = em.createQuery("Select N from Notificacion_Evento N where N.evento.id_evento :fid_evento", Notificacion_Evento.class);
+       query.setParameter("fid_evento", id_evento);
+       return query.getResultList();
+    }
+    
+    @Override
     public Notificacion_Evento getNotById (Long id_not){
         TypedQuery<Notificacion_Evento> query = em.createQuery("Select N from Notificacion_Evento N where N.id_not_evento = :fid_not", Notificacion_Evento.class);
         query.setParameter("fid_not", id_not);
@@ -39,6 +47,7 @@ public class Notificacion_EventoFacade extends AbstractFacade<Notificacion_Event
         return notificacion;
     }
     
+    @Override
     public List<Notificacion_Evento> findByIdUser (Long id_user){
         TypedQuery<Notificacion_Evento> query = em.createQuery("Select N from Notificacion_Evento N where N.socio.id_Usuario  = :fid_user", Notificacion_Evento.class);
         query.setParameter("fid_user", id_user);

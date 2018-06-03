@@ -143,4 +143,8 @@ public class misDocs implements Serializable{
         docEJB.remove(doc);
         return "misDocumentos.xhtml";
     }
+    
+     public List<Documento> getMisDocs(Long id_us){
+        return docEJB.getByIdUser(id_us);
+    }
 }
