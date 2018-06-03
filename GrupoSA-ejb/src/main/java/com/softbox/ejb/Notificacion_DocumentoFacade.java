@@ -39,6 +39,7 @@ public class Notificacion_DocumentoFacade extends AbstractFacade<Notificacion_Do
        return query.getResultList();
     }
     
+    @Override
     public Notificacion_Documento getNotById (Long id_not){
         TypedQuery<Notificacion_Documento> query = em.createQuery("Select N from Notificacion_Documento N where N.id_not_documento = :fid_not", Notificacion_Documento.class);
         query.setParameter("fid_not", id_not);
@@ -46,6 +47,7 @@ public class Notificacion_DocumentoFacade extends AbstractFacade<Notificacion_Do
         return notificacion;
     }
     
+    @Override
     public List<Notificacion_Documento> findByIdUser (Long id_user){
         TypedQuery<Notificacion_Documento> query = em.createQuery("Select N from Notificacion_Documento N where N.socio.id_Usuario  = :fid_user", Notificacion_Documento.class);
         query.setParameter("fid_user", id_user);

@@ -75,6 +75,7 @@ public class misDocs implements Serializable{
     }
     
     public String insertarDoc(){
+        doc.setId_documento(docEJB.getNextId());
         doc.setEstado(EstadoDoc.PENDIENTE);
         doc.setEnlace("");
         doc.setFecha(Date.valueOf(LocalDate.now()));
@@ -82,6 +83,7 @@ public class misDocs implements Serializable{
         doc.setSocio(s);
         docEJB.create(doc);
         Notificacion_Documento notif = new Notificacion_Documento();
+        
         notif.setSocio(s);
         notif.setFechaNotificacion(Date.valueOf(LocalDate.now()));
         notif.setEstado("False");
@@ -140,5 +142,9 @@ public class misDocs implements Serializable{
         }
         docEJB.remove(doc);
         return "misDocumentos.xhtml";
+    }
+    
+     public List<Documento> getMisDocs(Long id_us){
+        return docEJB.getByIdUser(id_us);
     }
 }

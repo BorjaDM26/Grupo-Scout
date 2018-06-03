@@ -31,6 +31,8 @@ public interface Notificacion_EventoFacadeLocal {
 
     int count();
     
+    List<Notificacion_Evento> findByIdEvento (Long id_evento);
+    
     Notificacion_Evento getNotById (Long id_not);
     
     List<Notificacion_Evento> findByIdUser (Long id_user);

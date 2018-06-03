@@ -30,4 +30,7 @@ public interface DocumentoFacadeLocal {
 
     int count();
     
+    Long getNextId();
+    
+    List<Documento> getByIdUser(Long id_user);
 }

@@ -19,7 +19,7 @@
                     <h1>Mis Documentos</h1>
                     <h:form id="formDocs">
 
-                        <h:dataTable id="docsLista" value="#{misDocs.getLista_docs()}" var="doc" class="table">
+                        <h:dataTable id="docsLista" value="#{misDocs.getMisDocs(controlAutorizacion.socio.id_Usuario)}" var="doc" class="table">
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Identificador"/>
@@ -54,7 +54,7 @@
                                 
                                     <a href="#{doc.getEnlace()}" download="#{doc.getNombre()}"><i class="fas fa-eye"></i></a>
                                     &nbsp;
-                                    <h:commandLink action="#{misDocs.borrarDoc(doc)}"><i class="far fa-trash-alt"></i></h:commandLink>
+                                    <h:commandLink action="#{misDocs.borrarMisDoc(doc)}"><i class="far fa-trash-alt"></i></h:commandLink>
                                     &nbsp;
                                     <a style="color: #847BFF;cursor:pointer" data-toggle="modal" data-target="#modalFichero"> <i class="fas fa-upload"></i></a>
                                     &nbsp;
