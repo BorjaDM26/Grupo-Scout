@@ -22,18 +22,14 @@
                             <h:inputText a:type="number" a:step="any" value="#{pagosBB.pago_Cuota.importe}" class="form-control" id="inputImporte" a:required="true" a:placeholder="Importe"/>
                         </div>
                         <div class="form-group col-md-4">
-                            <h:outputLabel for="inputNombre">Socio: Nombre *</h:outputLabel>
-                            <h:inputText a:type="text" value="#{pagosBB.pago_Cuota.socio.nombre}" class="form-control" id="inputNombre" a:required="true" a:placeholder="Nombre"/>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <h:outputLabel for="inputApellidos">Socio: Apellidos *</h:outputLabel>
-                            <h:inputText a:type="text" value="#{pagosBB.pago_Cuota.socio.apellidos}" class="form-control" id="inputApellidos" a:required="true" a:placeholder="Apellidos"/>
+                            <h:outputLabel for="inputIdentificador">Socio: Identificador *</h:outputLabel>
+                            <h:inputText a:type="number" value="#{pagosBB.pago_Cuota.socio.id_Usuario}" class="form-control" id="inputIdentificador" a:required="true" a:placeholder="Identificador"/>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <h:outputLabel for="inputCuota">Cuota *</h:outputLabel>
-                            <h:inputText a:type="text" value="#{pagosBB.pago_Cuota.cuota.nombre}" class="form-control" id="inputCuota" a:required="true" a:placeholder="Cuota"/>
+                            <h:inputText a:type="number" value="#{pagosBB.pago_Cuota.cuota.id_Cuota}" class="form-control" id="inputCuota" a:required="true" a:placeholder="Cuota"/>
                         </div>
                         <div class="form-group col-md-4">
                             <h:outputLabel for="inputFecha">Fecha de Pago *</h:outputLabel>
@@ -54,18 +50,14 @@
                             <h:inputText a:type="number" value="#{pagosBB.pago_evento.importe}" class="form-control" id="inputImporte" a:required="true" a:placeholder="Importe"/>
                         </div>
                         <div class="form-group col-md-4">
-                            <h:outputLabel for="inputNombre">Socio: Nombre *</h:outputLabel>
-                            <h:inputText a:type="text" value="#{pagosBB.pago_evento.socio.nombre}" class="form-control" id="inputNombre" a:required="true" a:placeholder="Nombre"/>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <h:outputLabel for="inputApellidos">Socio: Apellidos *</h:outputLabel>
-                            <h:inputText a:type="text" value="#{pagosBB.pago_evento.socio.apellidos}" class="form-control" id="inputApellidos" a:required="true" a:placeholder="Apellidos"/>
+                            <h:outputLabel for="inputIdentificador">Socio: Identificador *</h:outputLabel>
+                            <h:inputText a:type="number" value="#{pagosBB.pago_evento.socio.id_Usuario}" class="form-control" id="inputIdentificador" a:required="true" a:placeholder="Identificador"/>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <h:outputLabel for="inputEvento">Evento *</h:outputLabel>
-                            <h:inputText a:type="text" value="#{pagosBB.pago_evento.evento.nombre}" class="form-control" id="inputEvento" a:required="true" a:placeholder="Evento"/>
+                            <h:inputText a:type="number" value="#{pagosBB.pago_evento.evento.id_evento}" class="form-control" id="inputEvento" a:required="true" a:placeholder="Evento"/>
                         </div>
                         <div class="form-group col-md-4">
                             <h:outputLabel for="inputFecha">Fecha de Pago *</h:outputLabel>

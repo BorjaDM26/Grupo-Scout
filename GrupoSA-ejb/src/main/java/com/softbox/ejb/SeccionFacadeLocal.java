@@ -29,6 +29,7 @@ public interface SeccionFacadeLocal {
     List<Seccion> findRange(int[] range);
 
     int count();
+    Long getNextId();
     
     Seccion findByNombre(String nombre);
     

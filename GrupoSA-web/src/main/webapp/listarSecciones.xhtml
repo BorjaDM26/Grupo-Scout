@@ -14,9 +14,7 @@
         </ui:define>
         <ui:define name="contenido">
             <h:form style="min-height: 55px">
-                <c:if test="#{controlAutorizacion.socio.getPerfil() == 'ROOT'}">
-                    <h:commandLink action="#{seccionesAdminBB.newSeccion()}" class="btn btn-success float-right"><i class="fas fa-plus"></i> Crear</h:commandLink>
-                </c:if>
+
                     
             </h:form>
 
@@ -45,9 +43,7 @@
                             &nbsp;
                         </c:if>
                         <c:if test="#{controlAutorizacion.socio.getPerfil() == 'ROOT'}">
-                            <h:commandLink action="#{seccionesAdminBB.updateSeccion(sec)}"><i class="fas fa-edit"></i></h:commandLink>
-                            &nbsp;
-                            <h:commandLink action="#{seccionesAdminBB.deleteSeccion(sec)}"><i class="far fa-trash-alt"></i></h:commandLink>
+                            <h:commandLink action="#{seccionesAdminBB.modSeccion(sec)}"><i class="fas fa-edit"></i></h:commandLink>
                             &nbsp;
                         </c:if>
                     </h:form>

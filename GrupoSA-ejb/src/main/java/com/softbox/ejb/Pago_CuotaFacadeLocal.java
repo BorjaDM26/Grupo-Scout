@@ -30,4 +30,10 @@ public interface Pago_CuotaFacadeLocal {
 
     int count();
     
+    void modificar(Pago_Cuota pago_Cuota);
+    
+    Long getNextId();
+    
+    void crear(Pago_Cuota pago_Cuota);
+    
 }

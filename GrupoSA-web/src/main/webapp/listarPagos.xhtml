@@ -65,7 +65,7 @@
                                 &nbsp;
                             </c:if>
                             <c:if test="#{controlAutorizacion.socio.getPerfil() == 'ROOT'}">
-                                <h:commandLink action="#{pagosBB.updatePagoCuota(pago)}"><i class="fas fa-edit"></i></h:commandLink>
+                                <h:commandLink action="#{pagosBB.modPagoCuota(pago)}"><i class="fas fa-edit"></i></h:commandLink>
                                 &nbsp;
                                 <h:commandLink action="#{pagosBB.deletePagoCuota(pago)}"><i class="far fa-trash-alt"></i></h:commandLink>
                                 &nbsp;
@@ -119,7 +119,7 @@
                                 &nbsp;
                             </c:if>
                             <c:if test="#{controlAutorizacion.socio.getPerfil() == 'ROOT'}">
-                                <h:commandLink action="#{pagosBB.updatePagoEvento(pago)}"><i class="fas fa-edit"></i></h:commandLink>
+                                <h:commandLink action="#{pagosBB.modPagoEvento(pago)}"><i class="fas fa-edit"></i></h:commandLink>
                                 &nbsp;
                                 <h:commandLink action="#{pagosBB.deletePagoEvento(pago)}"><i class="far fa-trash-alt"></i></h:commandLink>
                                 &nbsp;

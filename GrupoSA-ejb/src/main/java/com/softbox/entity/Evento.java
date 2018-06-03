@@ -8,6 +8,7 @@ package com.softbox.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -62,13 +63,15 @@ public class Evento implements Serializable {
         joinColumns = @JoinColumn(name = "inscripcion_evento_fk"),
         inverseJoinColumns = @JoinColumn(name = "inscripcion_socio_fk"))
     private List<Socio> inscritos;
-    @OneToMany(mappedBy = "evento")
-    private List<Notificacion_Evento> notificacionesEvento;
-    @OneToMany(mappedBy = "evento")
-    private List<Pago_Evento> pagosEvento;
-    @OneToMany(mappedBy = "evento")
-    private List<Comentario> comentariosEvento;    
     
+    @OneToMany(mappedBy = "evento",cascade=CascadeType.REMOVE)
+    private List<Notificacion_Evento> notificacionesEvento;
+    
+    @OneToMany(mappedBy = "evento",cascade=CascadeType.REMOVE)
+    private List<Pago_Evento> pagosEvento;
+    
+    @OneToMany(mappedBy = "evento",cascade=CascadeType.REMOVE)
+    private List<Comentario> comentariosEvento;    
     
     //Getters
 

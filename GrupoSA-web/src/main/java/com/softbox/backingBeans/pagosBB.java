@@ -5,6 +5,8 @@
  */
 package com.softbox.backingBeans;
 
+import com.softbox.ejb.Pago_CuotaFacadeLocal;
+import com.softbox.ejb.Pago_EventoFacadeLocal;
 import com.softbox.entity.Cuota;
 import com.softbox.entity.Evento;
 import com.softbox.entity.Pago_Cuota;
@@ -19,6 +21,7 @@ import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 
 /**
  *
@@ -35,68 +38,20 @@ public class pagosBB implements Serializable{
     private Pago_Cuota pago_cuota = new Pago_Cuota();
     private Pago_Evento pago_evento= new Pago_Evento();
     private boolean modo;
-
+    
+    @Inject
+    private Pago_EventoFacadeLocal pago_EventoEJB;
+    
+    @Inject
+    private Pago_CuotaFacadeLocal pago_CuotaEJB;
     /**
      * Creates a new instance of sociosBB
      */
     public pagosBB() {
-        modo= true;
-        pagosEventos=new ArrayList<Pago_Evento>();
-        Pago_Evento pagoEvento1=new Pago_Evento();
-        
-        pagosCuotas = new ArrayList<Pago_Cuota>();
-        Pago_Cuota pagoCuota1 = new Pago_Cuota();
-        
-        Cuota cuota=new Cuota();
-        cuota.setId_Cuota(Long.parseLong("1"));
-        cuota.setNombre("Cuota 1 ");
-        
-        Socio socio= new Socio();
-        socio.setId_Socio(Long.parseLong("1"));
-        socio.setNombre("Ricardo");
-        socio.setApellidos("Romero");
-        
-        Evento evento=new Evento();
-        evento.setId_evento(Long.parseLong("1"));
-        evento.setNombre("Evento 1");
-        
-        pagoEvento1.setId_Pago(sigIdPagoEvento++);
-        pagoEvento1.setImporte(Float.parseFloat("30.99"));
-        pagoEvento1.setFecha(Date.valueOf("2022-12-01"));
-        pagoEvento1.setEvento(evento);
-        pagoEvento1.setSocio(socio);
-        
-        pagoCuota1.setId_Pago(sigIdPagoCuota++);
-        pagoCuota1.setImporte(Float.parseFloat("56.99"));
-        pagoCuota1.setFecha(Date.valueOf("2018-09-13"));
-        pagoCuota1.setCuota(cuota);
-        pagoCuota1.setSocio(socio);
-
-        pagosCuotas.add(pagoCuota1);
-        pagosEventos.add(pagoEvento1);
-        
-        Pago_Evento pagoEvento2=new Pago_Evento();
-        pagoEvento2.setId_Pago(sigIdPagoEvento++);
-        pagoEvento2.setImporte(Float.parseFloat("0.99"));
-        pagoEvento2.setFecha(Date.valueOf("2019-05-12"));
-        pagoEvento2.setEvento(evento);
-        pagoEvento2.setSocio(socio);
-        
-        Pago_Cuota pagoCuota2 = new Pago_Cuota();
-        pagoCuota2.setId_Pago(sigIdPagoCuota++);
-        pagoCuota2.setImporte(Float.parseFloat("100.99"));
-        pagoCuota2.setFecha(Date.valueOf("2022-04-29"));
-        pagoCuota2.setCuota(cuota);
-        pagoCuota2.setSocio(socio);
-        
-        pagosCuotas.add(pagoCuota2);
-        pagosEventos.add(pagoEvento2);
-        
-        
     }
 
     public List<Pago_Evento> getPagosEventos() {
-        return pagosEventos;
+        return pago_EventoEJB.findAll();
     }
 
     public void setPagosEventos(List<Pago_Evento> pagosEventos) {
@@ -113,7 +68,7 @@ public class pagosBB implements Serializable{
 
     
     public List<Pago_Cuota> getPagosCuotas() {
-           return pagosCuotas; 
+       return pago_CuotaEJB.findAll(); 
     
     }
 
@@ -152,23 +107,33 @@ public class pagosBB implements Serializable{
     
     //Crea el pago_evento con los datos proporcionado en la vista de creación
     public String createPagoCuota(){
-        pago_cuota.setId_Pago(sigIdPagoCuota++);        
-        pagosCuotas.add(pago_cuota);
+        pago_cuota.setId_Pago(pago_CuotaEJB.getNextId());        
+        pago_CuotaEJB.crear(pago_cuota);
         return "listarPagos.xhtml";
     }
     
     public String createPagoEvento(){
-        pago_evento.setId_Pago(sigIdPagoEvento++);        
-        pagosEventos.add(pago_evento);
+        pago_evento.setId_Pago(pago_EventoEJB.getNextId());
+        pago_EventoEJB.crear(pago_evento);
         return "listarPagos.xhtml";
     }
-    public String updatePagoCuota(Pago_Cuota pago_cuota){
-        this.pago_cuota = pago_cuota;
-        return "modificarPago.xhtml";
-    }
-    public String updatePagoEvento(Pago_Evento pago_evento){
+    public String modPagoEvento(Pago_Evento pago_evento){
         this.pago_evento = pago_evento;
         return "modificarPago.xhtml";
+    }
+    
+    public String modPagoCuota(Pago_Cuota pago_cuota){
+        this.pago_cuota= pago_cuota;
+        return "modificarPago.xhtml";
+    }
+    public String updatePago(){
+        if(modo){
+            pago_CuotaEJB.modificar(pago_cuota);
+        }else{
+           pago_EventoEJB.modificar(pago_evento);
+        }
+        
+        return  "listarPagos.xhtml";
     }
     
     public String readPagoCuota(Pago_Cuota pago_cuota){
@@ -181,27 +146,11 @@ public class pagosBB implements Serializable{
     }
     
     public String deletePagoCuota(Pago_Cuota soc){
-        boolean borrado = false;
-        int i = 0;
-        while(!borrado && i < pagosCuotas.size()){
-            if(pagosCuotas.get(i).getId_Pago().compareTo(soc.getId_Pago())==0){
-                pagosCuotas.remove(i);
-                borrado=true;
-            }
-            i++;
-        }
+        pago_CuotaEJB.remove(soc);
         return "listarPagos.xhtml";
     }
     public String deletePagoEvento(Pago_Evento soc){
-        boolean borrado = false;
-        int i = 0;
-        while(!borrado && i < pagosEventos.size()){
-            if(pagosEventos.get(i).getId_Pago().compareTo(soc.getId_Pago())==0){
-                pagosEventos.remove(i);
-                borrado=true;
-            }
-            i++;
-        }
+        pago_EventoEJB.remove(soc);
         return "listarPagos.xhtml";
     }
     
