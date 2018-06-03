@@ -17,14 +17,14 @@
                         <a id="lateraldatosUsuario" href="datosUsuario.xhtml" class="list-group-item list-group-item-action lateraldatosUsuario">Mis Datos</a>
                         <a id="lateralmisDocumentos" href="misDocumentos.xhtml" class="list-group-item list-group-item-action lateralmisDocumentos">Mis Documentos</a>
                         <h:form a:action="misNotificaciones.xhtml" id="formNotificacion">
-                            <h:commandLink id="lateralmisNotificaciones" action="#{notificacionesBB.irNotif()}" class="list-group-item list-group-item-action lateralmisNotificaciones active">Notificaciones</h:commandLink>
+                            <h:commandLink id="lateralmisNotificaciones" action="#{notificacionesBB.irNotif(controlAutorizacion.socio.id_Usuario)}" class="list-group-item list-group-item-action lateralmisNotificaciones active">Notificaciones</h:commandLink>
                         </h:form>
                     </div>
                 </div>
                 <div class="col-md-10">
                     <h1>Notificaciones Nuevas</h1>
                     <c:if test="#{notificacionesBB.noLeidas >0}">
-                        <c:forEach items="#{notificacionesBB.notifEventos}" var="item">
+                        <c:forEach items="#{notificacionesBB.notifs_evento}" var="item">
                             <c:if test="#{item.estado == 'False'}">
                                 <div class="offset-md-2 col-md-9 caja_comentario">
                                     <h:panelGroup layout="block" class="col-md-12" style="padding-left: 0px">
@@ -48,7 +48,7 @@
                             </c:if>
                         </c:forEach>
                     
-                    <c:forEach items="#{notificacionesBB.notifDocs}" var="item">
+                        <c:forEach items="#{notificacionesBB.notifs_doc}" var="item">
                         <c:if test="#{item.estado == 'False'}">
                             <div class="offset-md-2 col-md-9 caja_comentario">
                                 <h:panelGroup layout="block" class="col-md-12" style="padding-left: 0px">
@@ -73,8 +73,8 @@
                         <h4 class="alert_notif">No tienes notificaciones nuevas</h4>
                     </c:if>
                     <h1>Notificaciones Leidas</h1>
-                    <c:if test="#{!empty notificacionesBB.notifEventos || !empty notificacionesBB.notifDocs}">
-                    <c:forEach items="#{notificacionesBB.notifEventos}" var="item">
+                    <c:if test="#{!empty notificacionesBB.notifs_evento || !empty notificacionesBB.notifs_doc}">
+                        <c:forEach items="#{notificacionesBB.notifs_evento}" var="item">
                         <c:if test="#{item.estado == 'True'}">
                             <div class="offset-md-2 col-md-9 caja_comentario">
                                 <h:panelGroup layout="block" class="col-md-12" style="padding-left: 0px">
@@ -95,7 +95,7 @@
                         </c:if>
                     </c:forEach>
 
-                    <c:forEach items="#{notificacionesBB.notifDocs}" var="item">
+                        <c:forEach items="#{notificacionesBB.notifs_doc}" var="item">
                         <c:if test="#{item.estado == 'True'}">
                             <div class="offset-md-2 col-md-9 caja_comentario">
                                 <h:panelGroup layout="block" class="col-md-12" style="padding-left: 0px">
@@ -115,7 +115,7 @@
                         </c:if>
                     </c:forEach>
                 </c:if>
-                    <c:if test="#{empty notificacionesBB.notifEventos and empty notificacionesBB.notifDocs}">
+                    <c:if test="#{empty notificacionesBB.notifs_evento and empty notificacionesBB.notifs_doc}">
                         <h4 class="alert_notif">¡Vaya!, no tienes ninguna notificación.</h4>
                     </c:if>
                 </div>

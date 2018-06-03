@@ -5,6 +5,7 @@
  */
 package com.softbox.ejb;
 
+import com.softbox.entity.Notificacion_Documento;
 import com.softbox.entity.Notificacion_Evento;
 import java.util.List;
 import javax.ejb.Local;
@@ -29,5 +30,9 @@ public interface Notificacion_EventoFacadeLocal {
     List<Notificacion_Evento> findRange(int[] range);
 
     int count();
+    
+    Notificacion_Evento getNotById (Long id_not);
+    
+    List<Notificacion_Evento> findByIdUser (Long id_user);
     
 }

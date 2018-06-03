@@ -70,6 +70,7 @@ public class SocioFacade extends AbstractFacade<Socio> implements SocioFacadeLoc
     }
     
     @Override
+<<<<<<< HEAD
     public Long getNextId() {
         TypedQuery<BigDecimal> q = (TypedQuery<BigDecimal>) em.createNativeQuery("SELECT seq_count FROM SEQUENCE where seq_name = 'S_IDSOCIO'");
         Query q2 = em.createNativeQuery("UPDATE SEQUENCE SET SEQ_COUNT = SEQ_COUNT + 1 WHERE SEQ_NAME = 'S_IDSOCIO'");
@@ -77,4 +78,17 @@ public class SocioFacade extends AbstractFacade<Socio> implements SocioFacadeLoc
         return q.getSingleResult().longValue();
     }
     
+=======
+    public Socio getByIdUser (Long id_user){
+        TypedQuery<Socio> q = em.createQuery("SELECT s FROM Socio s where s.id_Usuario = :fid_user", Socio.class);
+        q.setParameter("fid_user", id_user);
+        List<Socio> lista = q.getResultList();
+        Socio s = null;
+        
+        if(lista.size() == 1)
+            s = lista.get(0);
+        
+        return s;
+    }
+>>>>>>> 4d950f37cde32e91eb7686e8beb9da840857e116
 }

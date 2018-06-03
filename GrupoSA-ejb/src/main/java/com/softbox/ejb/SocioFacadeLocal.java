@@ -33,5 +33,10 @@ public interface SocioFacadeLocal {
 
     int count();
     
+<<<<<<< HEAD
     Long getNextId();
+=======
+    Socio getByIdUser (Long id_user);
+    
+>>>>>>> 4d950f37cde32e91eb7686e8beb9da840857e116
 }
