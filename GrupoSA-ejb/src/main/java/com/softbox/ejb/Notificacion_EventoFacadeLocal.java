@@ -37,4 +37,6 @@ public interface Notificacion_EventoFacadeLocal {
     
     List<Notificacion_Evento> findByIdUser (Long id_user);
     
+    Long getNextId();
+    
 }

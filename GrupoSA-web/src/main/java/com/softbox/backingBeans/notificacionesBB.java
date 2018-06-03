@@ -14,6 +14,7 @@ import com.softbox.entity.Notificacion_Evento;
 import com.softbox.entity.Socio;
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
@@ -135,6 +136,17 @@ public class notificacionesBB implements Serializable{
     
     public Notificacion_Documento getNotificacion_Doc(Long id){
         return not_docEJB.getNotById(id);
+    }
+    
+    
+    public void crearNotifEvento(Socio soc, Evento eve){
+        Notificacion_Evento notificacion = new Notificacion_Evento();
+        notificacion.setId_not_evento(not_EventoEJB.getNextId());
+        notificacion.setSocio(soc);
+        notificacion.setEvento(eve);
+        notificacion.setEstado("False");
+        notificacion.setFechaNotificacion(Date.valueOf(LocalDate.now()));
+        not_EventoEJB.create(notificacion);
     }
     
     //Accede a la vista de creación de socios
